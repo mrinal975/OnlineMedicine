@@ -82,7 +82,6 @@
             <div class="row">
 
                 <div class="col-md-9 col-md-push-3">
-                    <!--<h3 class="h1 heading-primary mt-xl">Sexual Wellbeing</h3>-->
                     <div id="grid-list-view">
                         <ul class="products-list">
                             @foreach($products as $product)
@@ -118,6 +117,7 @@
                                 @endforeach
                         </ul>
                     </div>
+                    
                     <div class="toolbar-bottom">
                         <div class="toolbar">
                             <div class="sorter">
@@ -144,10 +144,10 @@
                             <div id="panel-filter-category" class="accordion-body collapse in">
                                 <div class="panel-body">
                                     <ul>
-                                        @foreach($subCatFromCat as $subNam)
-<!--                                         /category/{cat}/subcategory/{subcat} -->
-
+                                        @foreach($subcategory as $subNam)
+                                        @if($subNam->categoryId==$catLeftMenu->id)
                                         <li><a href="{{url('/category/'.$subNam->categoryId.'/subcategory/'.$subNam->id)}}">{{$subNam->subcategoryName}}</a></li>
+                                        @endif
                                         @endforeach
                                     </ul>
                                 </div>

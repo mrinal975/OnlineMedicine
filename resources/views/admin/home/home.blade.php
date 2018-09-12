@@ -46,19 +46,21 @@
             </div>
         </div>
             </a>
-            <div class="col-md-3 market-update-gd">
-                <div class="market-update-block clr-block-3">
-                    <div class="col-md-4 market-update-right">
-                        <i class="fa fa-usd"></i>
+            <a href="{{url('adminpanel/delivered/order')}}">
+                <div class="col-md-3 market-update-gd">
+                    <div class="market-update-block clr-block-3">
+                        <div class="col-md-4 market-update-right">
+                            <i class="fa fa-usd"></i>
+                        </div>
+                        <div class="col-md-8 market-update-left">
+                            <h4>Sales</h4>
+                            <h3>{{$sell}}</h3>
+                            <p>Overall sell over here on online medicine</p>
+                        </div>
+                        <div class="clearfix"> </div>
                     </div>
-                    <div class="col-md-8 market-update-left">
-                        <h4>Sales</h4>
-                        <h3>{{$sell}}</h3>
-                        <p>Overall sell over here</p>
-                    </div>
-                    <div class="clearfix"> </div>
                 </div>
-            </div>
+            </a>
             <div class="clearfix"> </div>
             <div class="clearfix"> </div>
         </div>

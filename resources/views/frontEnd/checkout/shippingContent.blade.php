@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Address</label>
-                        <textarea name="address" class="form-control" rows="4"></textarea>
+                        <textarea name="address" class="form-control" rows="4" placeholder="House-No/Road-No/Area"></textarea>
                         @if ($errors->has('address'))
                             <span class="help-block">
                                 <strong class="text-danger">{{ $errors->first('address') }}</strong>
@@ -50,18 +50,6 @@
                                 <strong class="text-danger">{{ $errors->first('phonenumber') }}</strong>
                             </span>
                         @endif
-                    </div>
-                    <div class="form-group">
-                        <label for="sel1">Dist. Name :</label>
-                        <select class="form-control" id="sel1" name="districtname">
-                            <option >Select District</option>
-                            <option value="Dhaka">Dhaka</option>
-                            <option value="Comilla">Comilla</option>
-                            <option value="Rajsahi">Rajsahi</option>
-                            <option value="Gazipur">Gazipur</option>
-                            <option value="Savar">Savar</option>
-                        </select>
-                        <br>
                     </div>
                     <br>
                     <div class="form-group text-center">

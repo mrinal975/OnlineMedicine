@@ -1,4 +1,5 @@
 @extends('admin.master')
+
 @section('rootcontent')
     <section class="wrapper">
         <!-- //market-->
@@ -19,9 +20,8 @@
                             <tr>
                                 <thead>
                                 <tr>
-                                    <th class="text-center">Phone number</th>
-                                    <th class="text-center">e-mail address</th>
-                                    <th class="text-center">Logo</th>
+                                    <th class="text-center">Bkash</th>
+                                    <th class="text-center">Rocket</th>
                                     <th class="text-center">Publication Status</th>
                                     <th class="text-center">Change Status</th>
                                     <th class="text-center">Action</th>
@@ -30,10 +30,8 @@
                                 <tbody>
                                 @foreach($Information as $info)
                                     <tr>
-                                        <td class="text-center">{{$info->info_Phone}}</td>
-                                        <td class="text-center">{{$info->info_Email}}</td>
-                                        <td class="text-center"><img src="{{asset($info->info_logo)}}" alt="Front Logo" height="50" width="50" class="img-rounded"></td>
-
+                                        <td class="text-center">{{$info->bkas}}</td>
+                                        <td class="text-center">{{$info->rocket}}</td>
                                         <td class="text-center" >
                                             @if($info->publication_status=='0')
                                                 <h5 class="text-danger " id="status">Unpublish</h5>
@@ -42,10 +40,10 @@
                                                 @endif
                                         </td>
                                         <td class="text-center">
-                                        <a href="{{url('adminpanel/information/Manage/hideorshow/'.$info->id)}}" class="btn btn-default">change</a>
+                                        <a href="{{url('adminpanel/gateway/hideorshow/'.$info->id)}}" class="btn btn-default">change</a>
                                         </td>
                                         <td>
-                                            <a href="{{url('adminpanel/information/delete/'.$info->id)}}" title="Delete Product" onclick="return confirm('Are you sure to delete');" class="btn btn-danger" >
+                                            <a href="{{url('adminpanel/gateway/delete/'.$info->id)}}" title="Delete Product" onclick="return confirm('Are you sure to delete');" class="btn btn-danger" >
                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                             </a>
                                         </td>
@@ -56,7 +54,7 @@
                         </table>
                     </div>
                     <div class="pull-right">
-                        {{$Information->links()}}
+                        {{$Information->links()}}    
                     </div>
                 </div>
             </div>
@@ -64,32 +62,5 @@
     </section>
 @endsection
 @section('js')
-    <script>
-        $(document).ready(function(){
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $(document).on('click','.change_status',function () {
-                console.log('clicked');
-                var info_id=$(this).val();
-                $.ajax({
-                    type:'get',
-                    url:'{{URL::to('/adminpanel/information/Manage/hideorshow')}}',
-                    data:{'id':info_id},
-                    success:function (data) {
-                        console.log('Successfully data received');
-                        console.log(data);
-                        $('#status').html(data);
-                        replaceWith($('#status').html(data));
-                    },
-                    error:function () {
-                        console.log('Data Not receiveed');
-                    }
-                });
 
-            })
-        });
-    </script>
 @endsection

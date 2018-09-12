@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use App\Category;
+use App\subcategory;
+use App\Info;
 class RegisterController extends Controller
 {
     /*
@@ -20,6 +22,14 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
+    public function showRegistrationForm()
+    {
+        $Category=Category::all();
+        $subcategory=subcategory::all();
+        $publishedCategory=Category::all();
+        $info=Info::where('publication_status',1)->first();
+        return view('frontEnd.login.register',['Category'=>$Category,'subcategory'=>$subcategory,'info'=>$info]);
+    }
 
     use RegistersUsers;
 
@@ -28,7 +38,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.

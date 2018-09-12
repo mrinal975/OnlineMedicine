@@ -1,4 +1,5 @@
 @extends('admin.master')
+
 @section('rootcontent')
     <section class="wrapper">
         <!-- //market-->
@@ -6,20 +7,20 @@
             <br>
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="text-center">Add Main Page Information</h3>
+                    <h3 class="text-center">Add Gateway Information</h3>
                     <br><br>
                     <div class="well">
 
                         <h3 class="text-center text-success">{{Session::get('message')}}</h3>
                         <br>
-                        {!! Form::open(['url'=>'adminpanel/new/information/store','method'=>'POST','class'=>'form-horizontal','enctype'=>'multipart/form-data']) !!}
+                        {!! Form::open(['url'=>'adminpanel/new/gateway/store','method'=>'POST','class'=>'form-horizontal','enctype'=>'multipart/form-data']) !!}
                         <div class="form-group ">
-                            <label for="info_Phone" class="col-sm-4 control-label">Phone Number</label>
-                            <div class="col-sm-5 {{ $errors->has('info_Phone') ? ' has-error' : '' }}">
-                                <input type="text" class="form-control" name="info_Phone">
-                                @if ($errors->has('info_Phone'))
+                            <label for="bkas" class="col-sm-4 control-label">bkas Number</label>
+                            <div class="col-sm-5 {{ $errors->has('bkas') ? ' has-error' : '' }}">
+                                <input type="text" class="form-control" name="bkas">
+                                @if ($errors->has('bkas'))
                                     <span class="help-block">
-                                <strong class="text-danger">{{ $errors->first('info_Phone') }}</strong>
+                                <strong class="text-danger">{{ $errors->first('bkas') }}</strong>
                             </span>
                                 @endif
                             </div>
@@ -27,25 +28,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="info_Email" class="col-sm-4 control-label">E-mail Address</label>
+                            <label for="rocket" class="col-sm-4 control-label">rocket Number</label>
                             <div class="col-sm-5">
-                                <input type="email" class="form-control" name="info_Email">
-                                @if ($errors->has('info_Email'))
+                                <input type="rocket" class="form-control" name="rocket">
+                                @if ($errors->has('rocket'))
                                     <span class="help-block">
-                                <strong class="text-danger">{{ $errors->first('info_Email') }}</strong>
-                            </span>
-                                @endif
-                            </div>
-                            <div class="col-sm-3"></div>
-                        </div>
-
-                        <div class="form-group {{ $errors->has('productImage') ? ' has-error' : '' }}">
-                            <label for="info_logo" class="col-sm-4 control-label">Front logo</label>
-                            <div class="col-sm-5">
-                                <input type="file" name="info_logo" accept="image">
-                                @if ($errors->has('info_logo'))
-                                    <span class="help-block">
-                                 <strong class="text-danger">{{ $errors->first('info_logo') }}</strong>
+                                <strong class="text-danger">{{ $errors->first('rocket') }}</strong>
                             </span>
                                 @endif
                             </div>

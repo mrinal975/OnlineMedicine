@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Session;
 use App\Category;
 use App\subcategory;
 use App\Info;
+use App\Gateway;
+
 class PaymentController extends Controller
 {
     public function showPaymentForm(){
@@ -26,9 +28,8 @@ class PaymentController extends Controller
         $subcategory=subcategory::all();
         $paymentType=$request->paymentType;
         $info=Info::where('publication_status',1)->first();
-        if($paymentType=='cashOnDelivery'){
-
-            $order=new Order();
+        $Gateway=Gateway::where('publication_status',1)->first();
+         $order=new Order();
             $order->customerId=Session::get('customerid');
             $order->shippingId=Session::get('shippingid');
             $order->orderTotal=Session::get('orderTotal');
@@ -56,23 +57,32 @@ class PaymentController extends Controller
 
             }
             Cart::destroy();
+            $phone='';
+            $way='';
+        if($paymentType=='cashOnDelivery'){           
             $message="We will process the order soon";
             return redirect('/checkout/my-home')->with('message',$message);
+
         }else if($paymentType=='bkash'){
-            $message="<stronhg>01515298780</stronhg> is for bkash .within 30min you need to send money for confirm your purchase";
-            return view('frontEnd/payment/paymentConfirmed',['Category'=>$Category,'subcategory'=>$subcategory,'info'=>$info])->with('message',$message);
-//            return "Under construction bakash payment.Please use cash on delivery";
-        }else if($paymentType='paypal'){
-            $message="<stronhg>01515298780</stronhg> is for Rocket .within 30min you need to send money for confirm your purchase";
-            return view('frontEnd/payment/paymentConfirmed',['Category'=>$Category,'subcategory'=>$subcategory,'info'=>$info])->with('message',$message);
+            $phone=$Gateway->bkas;
+            $way='bkash';
+        }else if($paymentType='rocket'){
+            $phone=$Gateway->rocket;
+            $way='Rocket';
         }
+        else if($paymentType='dutchbangla'){
+            $phone=$Gateway->dutchbangla;
+            $way='Dutch bangla';
+        }
+        $message=$phone."is for ".$way." .within 30min you need to send money for confirm your purchase";
+        return redirect('/checkout/my-home')->with('message',$message);
+
     }
     public function paymentConfired(){
         $Category=Category::all();
         $subcategory=subcategory::all();
-        $message="";
         $info=Info::where('publication_status',1)->first();
-        return view('frontEnd/payment/paymentConfirmed',['Category'=>$Category,'subcategory'=>$subcategory,'info'=>$info])->with('message',$message);
+        return view('frontEnd/payment/paymentConfirmed',['Category'=>$Category,'subcategory'=>$subcategory,'info'=>$info]);
     }
 
 }

@@ -40,7 +40,10 @@ class CheckoutUser extends Controller
 
             Session::put('customerid',Auth::user()->id);
             return redirect('checkout/shipping');
+        }else{
+            return back()->with('message','Invalid E-mail or password');
         }
+
     }
 
 }

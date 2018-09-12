@@ -4,9 +4,10 @@
 @endsection
 @section('mainContent')
 <div class="container">
+    <br><br>
     <div class="row">
 
-        <div class="col-sm-5">
+        <div class="col-sm-6" style="border-right: 1px dotted black;">
             <br><br><br>
             {{--<form method="POST" action="{{ route('kjhkj') }}" aria-label="{{ __('Register') }}">--}}
                 {!! Form::open(['url'=>'/checkout/sign-up','login','method'=>'POST','class'=>'form-horizontal']) !!}
@@ -79,7 +80,7 @@
 
                 <div class="form-group row mb-0">
                     <div class="col-md-7 offset-md-3 pull-right">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-info">
                             Register
                         </button>
                     </div>
@@ -87,12 +88,12 @@
             {{--</form>--}}
             {!! Form::close() !!}
         </div>
-        <div class="col-sm-2">
-
-        </div>
+       <!-- <div class="col-sm-1"></div> -->
+        <div class="col-sm-1"></div> 
 
         <div class="col-sm-5">
-            <br><br><br>
+            <h4 class="text-center bg-danger">{{Session::get('message')}}</h4>
+            <br><br>
             {{--<form method="POST" action="{{ route('/checkout/sign-in') }}" aria-label="{{ __('Login') }}">--}}
                 {!! Form::open(['url'=>'/checkout/sign-in','login','method'=>'POST','class'=>'form-horizontal']) !!}
                 @csrf
@@ -139,7 +140,7 @@
 
                 <div class="form-group row mb-0 text-center">
                     <div class="col-md-8 offset-md-4">
-                        <button type="submit" class="btn btn-primary pull-right">
+                        <button type="submit" class="btn btn-info pull-right">
                             Login
                         </button>
 

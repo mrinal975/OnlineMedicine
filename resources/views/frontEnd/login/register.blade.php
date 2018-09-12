@@ -1,36 +1,10 @@
-@extends('frontEnd.master')
+@extends('frontEnd.superMaster')
 @section('title')
     Category Page
 @endsection
 @section('mainContent')
     <div role="main" class="main">
-        <div class="container-fluid" style="position: relative">
-            <div class="row search">
-                <div style="background-color: #f0f0ed; width: 100%; padding: 5px 0;">
-                    <div class="container">
-                        <div class="col-sm-9  col-xs-9 text-center" id="search-body-mobile" style="border-right: 1px solid #777;">
-                            <div class="col-sm-9">
-                                <input type="text" id="example-ajax-post" placeholder="Search here..." class="form-control"/>
-                                <input type="hidden" id="example-ajax-token" value="2zoh4YwwO26RdTdeJjXBvZjkwKObQFvYTkZKEkwZ"/>
-                            </div>
-                            <div class="col-sm-3">
-                                <select id="productCategory" name="categoryId" class="form-control">
-                                    <option value="1">Brand Name</option>
-                                    <option value="2">Generic Name</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 col-xs-3 text-center mobile-margin">
-                            <a href="http://epharma.com.bd/prescription-upload">
-                                <button style="background-color: #006394" class="btn btn-primary btn-md" id="upload-btn" >Upload Prescription</button>
-                            </a>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <div id="search-results" class="result"></div>
-            </div>
-        </div>    <section class="form-section">
+        <section class="form-section">
             <div class="container">
                 <div class="col-sm-6 col-xs-12" style="float: none; margin: 0 auto;">
                     <div class="featured-box featured-box-primary featured-box-flat featured-box-text-left mt-md">
@@ -38,8 +12,8 @@
                             <div class="col-xs-12" style="border-bottom: 1px solid #eee; margin-bottom: 10px;">
                                 <div class="form-group">
                                     <span style="font-size: 16px; line-height: 35px; color: #0088cc" class="pull-left">New Customer</span>
-                                    <a href="http://epharma.com.bd/registration">
-                                        <button class="btn btn-info pull-lg-right">Register</button>
+                                    <a href="/login">
+                                        <button class="btn btn-info pull-lg-right">Login</button>
                                     </a>
                                 </div>
                             </div>
@@ -48,12 +22,16 @@
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="col-sm-12">
                                     <div class="form-content">
-                                        <input type="hidden" name="_token" value="2zoh4YwwO26RdTdeJjXBvZjkwKObQFvYTkZKEkwZ">
-                                        <h3 style="color: #0088cc !important" class="heading-text-color font-weight-normal">LOGIN</h3>
+                                        <h3 style="color: #0088cc !important" class="heading-text-color font-weight-normal">Register</h3>
                                         <div class="clearfix"></div>
                                         <div class="form-group">
                                             <label class="font-weight-normal">Name <span class="required">*</span></label>
-                                            <input type="text" name="name"  class="form-control" required>
+                                            <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                              @if ($errors->has('name'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('name') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
                                         <div class="form-group">
                                             <label for="sel1">Gender:</label>
@@ -61,23 +39,45 @@
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
                                             </select>
+                                             @if ($errors->has('gender'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('gender') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
                                         <div class="form-group">
                                             <label class="font-weight-normal">E-mail <span class="required">*</span></label>
-                                            <input type="text" name="name"  class="form-control" required>
+                                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                             @if ($errors->has('email'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('email') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
                                         <div class="form-group">
                                             <label class="font-weight-normal">Password <span class="required">*</span></label>
-                                            <input type="password" name="password" class="form-control" required>
+                                            <input  id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                             @if ($errors->has('password'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('password') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-weight-normal">Confirm Password <span class="required">*</span></label>
+                                            <input  id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                             @if ($errors->has('password'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('password') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
 
                                         <p class="required">* Required Fields</p>
                                     </div>
 
                                     <div class="form-action clearfix">
-                                        <a href="#" class="pull-left">Forgot Your Password?</a>
-
-                                        <input type="submit" class="btn btn-primary btn-lg" value="Login">
+                                        <input type="submit" class="btn btn-primary btn-lg" value="Register">
                                     </div>
 
                                 </div>

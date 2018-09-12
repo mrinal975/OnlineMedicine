@@ -30,7 +30,7 @@ class ShippingController extends Controller
         $shipping->email=$request->email;
         $shipping->address=$request->address;
         $shipping->phonenumber=$request->phonenumber;
-        $shipping->districtname=$request->districtname;
+        $shipping->districtname='';
         $shipping->save();
         $shippingid=$shipping->id;
         Session::put('shippingid',$shippingid);
@@ -42,7 +42,6 @@ class ShippingController extends Controller
             'email'=>'required|email',
             'address'=>'required',
             'phonenumber'=>'required|regex:/(^01[56789]{1}[0-9]{8}$)/u',
-            'districtname'=>'required',
 
         ]);
     }

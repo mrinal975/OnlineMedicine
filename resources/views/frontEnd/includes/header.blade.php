@@ -1,45 +1,5 @@
 <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyStartAt': 75, 'stickySetTop': '-75px', 'stickyChangeLogo': true}">
     <div class="header-body">
-        <!--                <div class="header-top">
-                                    <div class="container">
-                                        <div class="dropdowns-container">
-                                            <div class="header-dropdown cur-dropdown">
-                                                <a href="#"><i class="fa fa-facebook" style="color: white; font-size: 14px;"></i></a>
-                                            </div>
-
-                                            <div class="header-dropdown lang-dropdown">
-                                                <a href="#"><i class="fa fa-twitter" style="color: white; font-size: 14px;"></i></a>
-                                            </div>
-
-                                            <div class="compare-dropdown">
-                                                <a href="#"><i class="fa fa-youtube" style="color: white; font-size: 14px;"></i></a>
-                                            </div>
-                                        </div>
-
-                                        <div class="top-menu-area">
-                                            <a href="#">Links <i class="fa fa-caret-down"></i></a>
-                                            <ul class="top-menu">
-                                                <li><a href="http://epharma.com.bd/how-to-order">How To Order</a></li>
-                                                <li><a href="http://epharma.com.bd/partners">Partners</a></li>
-                                                <li><a href="http://epharma.com.bd/policy">Policy</a></li>
-                                                <li><a href="http://epharma.com.bd/news">News</a></li>
-                                                <li><a href="http://epharma.com.bd/about-us">About Us</a></li>
-                                                <li><a href="http://epharma.com.bd/contact-us">Contact Us</a></li>
-                                                <li><a href="http://epharma.com.bd/login">My Account</a></li>
-                                                <li class="menu-item">
-                                                    <a href="http://epharma.com.bd/login">
-                                                        <i class="fa fa-user" style="margin-right: 5px;"></i>Login
-                                                    </a>
-                                                </li>
-                                                <li class="menu-item">
-                                                    <a href="http://epharma.com.bd/login">
-                                                        <i class="fa fa-user-plus" style="margin-right: 5px;"></i>Register
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>-->
         <div class="header-container container">
             <div class="header-row">
                 <div class="col-md-2 col-sm-6 col-xs-6 logo_border" style="padding-left: 0;">
@@ -102,7 +62,7 @@
                                                             @foreach($subcategory as $subcat)
                                                                 @if($cat->id==$subcat->categoryId)
                                                             <div class="col-md-6">
-                                                                <li><a href="/category/8{{$subcat->id}}">{{$subcat->subcategoryName}}</a></li>
+                                                                <li><a href="/category/{{$subcat->id}}">{{$subcat->subcategoryName}}</a></li>
                                                             </div>
                                                                 @endif
                                                                 @endforeach

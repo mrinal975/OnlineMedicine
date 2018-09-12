@@ -18,7 +18,7 @@ class CategoryController extends Controller
     public function storeCategory(Request $request){
         $this->validate($request,[
             'categoryName'=>'required',
-            'categoryImage'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024|min:20',
+            'categoryImage'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
             'publication_status'=>'required',
         ]);
         $categoryImage=$request->file('categoryImage');
@@ -148,7 +148,7 @@ class CategoryController extends Controller
             ->join('categories','subcategories.categoryId','=','categories.id')
             ->select('products.id','products.productName','products.subcategoryId','products.productPrice','products.productShortDescriptoin','products.brand','products.genericName','products.productImage','subcategories.subcategoryName')
             ->where('categories.id',$id)
-            ->get();
+            ->paginate(5);
         $subCatFromCat=subcategory::where('categoryId',$id)->get();
         $Category=Category::all();
         $subcategory=subcategory::all();

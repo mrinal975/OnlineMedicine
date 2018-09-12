@@ -36,6 +36,7 @@ class Handler extends ExceptionHandler
     public function report(Exception $exception)
     {
         parent::report($exception);
+     
     }
 
     /**
@@ -47,7 +48,26 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+       // return $exception->getStatusCode();
+         if($this->isHttpException($exception))
+            {
+            switch ($exception->getStatusCode()) {
+                case 404:
+                   return redirect()->route('NotFound');
+                    break;
+                case 500:
+                   return redirect()->route('NotFound');
+                    break;
+                
+                default:
+                    return $this->renderHttpException($e) ;
+                    break;
+            }
+        }else{
+
+            return parent::render($request, $exception);
+        }
+     
     }
     public function unauthenticated($request, AuthenticationException $exception)
     {
@@ -57,7 +77,7 @@ class Handler extends ExceptionHandler
         $guard=array_get($exception->guards(),0);
         switch ($guard){
             case 'admin':
-                return redirect()->guest(route('admin.login'));
+                return redirect()->guest(route('adminpanel.login'));
                 break;
             default:
                 return redirect()->guest(route('login'));

@@ -42,11 +42,17 @@
             <div class="container" style="padding-left: 0px;padding-right: 0px;">
                 <div class="header-nav-main">
                     <nav>
-                        <ul class="nav nav-pills" id="mainNav">
+                        <ul class="nav nav-pills" id="mainNav"> 
+                            <li>
+                                <a href="{{url('/')}}">
+                                    <i class="fa fa-home"></i>
+                                    Home
+                                </a>
+                            </li>
                              @foreach($Category as $cat)
                             <li style="margin-top: 2px;" class="dropdown dropdown-mega-small">
                                 <a href="{{url('/category/'.$cat->id)}}" class="dropdown-toggle">
-                                    <i style="line-height: 0; margin-right: 3px; margin-top: -1px;" class="fa fa-users"></i>{{$cat->categoryName}}
+                                    <i style="line-height: 0; margin-right: 3px; margin-top: -1px;" class=""></i>{{$cat->categoryName}}
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
@@ -58,7 +64,8 @@
                                                             @foreach($subcategory as $subcat)
                                                                 @if($cat->id==$subcat->categoryId)
                                                             <div class="col-md-6">
-                                                                <li><a href="{{url('/single-Product/'.$subcat->id)}}">{{$subcat->subcategoryName}}</a></li>
+                                                                <li><a href="
+                                                                    {{url('/category/'.$cat->id.'/subcategory/'.$subcat->id)}}">{{$subcat->subcategoryName}}</a></li>
                                                             </div>
                                                                 @endif
                                                                 @endforeach
@@ -89,12 +96,46 @@
                                     </strong>
                                 </a>
                             </li>
-                            {{--<li class="pull-right ">--}}
-                                {{--<a href="{{url('/login')}}">--}}
-                                    {{--<i class="fa fa-user-circle"></i>--}}
-                                    {{--Login--}}
-                                {{--</a>--}}
-                            {{--</li>--}}
+                             
+                            @guest
+                            <li class="pull-right ">
+                                <a href="{{url('/login')}}">
+                                    <i class="fa fa-user-circle"></i>
+                                    Login
+                                </a>
+                            </li>
+                            @else
+                    
+                            <div class="pull-right">
+                             <div class="dropdown">
+                                <!-- <li class="pull-right"  style="padding-top: 12px;cursor: pointer;">
+                                    <p data-toggle="dropdown" id="menu1">Mrinal</p>
+                                    
+                                </li> -->
+                                   <!--  <button class="btn btn-success dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">{{ Auth::user()->name }}</button> -->
+                                   
+                                       <p id="menu1" data-toggle="dropdown" style="
+                                       margin-right: 3px; margin-top: 7px;cursor: pointer; color: white;">{{ Auth::user()->name }}</p>
+                                   
+                                   
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                      <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('/user/order')}}">Order</a></li>
+                                      
+                                      <li role="presentation" class="divider"></li>
+                                      <li role="presentation">
+                                          <a class="dropdown-item"
+                                           onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+                                    </li>
+                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    </ul>
+                                  </div>
+                              </div>
+                            @endguest
                         </ul>
                     </nav>
                 </div>
@@ -129,12 +170,42 @@
 
                 </a>
             </li>
-            <li class="pull-right ">
+            <!-- <li class="pull-right ">
                 <a href="login">
                     <i class="fa fa-user-circle"></i>
                     Login
                 </a>
-            </li>
+            </li> -->
+             @guest
+                            <li class="pull-right ">
+                                <a href="{{url('/login')}}">
+                                    <i class="fa fa-user-circle"></i>
+                                    Login
+                                </a>
+                            </li>
+                            @else
+                    
+                            <div class="pull-right">
+                             <div class="dropdown">
+                                    <button class="btn btn-success dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">{{ Auth::user()->name }}</button>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                      <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('/user/order')}}">Order</a></li>
+                                      
+                                      <li role="presentation" class="divider"></li>
+                                      <li role="presentation">
+                                          <a class="dropdown-item"
+                                           onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+                                    </li>
+                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    </ul>
+                                  </div>
+                              </div>
+                            @endguest
         </ul>
     </div>
 </div>

@@ -27,6 +27,10 @@ Route::get('/checkout','CheckoutController@index');
 Route::post('/checkout/sign-up','CheckoutUser@customerRegister');
 Route::post('/checkout/sign-in','CheckoutUser@customerLogin');
 
+// Order of customer to watch Customer
+Route::get('/user/order','WellcomeController@viewCustomerOrder');
+
+
 //shipping information Route
 Route::get('/checkout/shipping','ShippingController@showShippingForm');
 Route::post('/checkout/save-shipping','ShippingController@saveShipingInfo');
@@ -44,9 +48,11 @@ Route::post('/prescription','PrescriptionController@uploadprescripton')->name('p
 Route::get('/single-Product/{id}','SingleProductController@showSingleProduct')->name('prescription-upload');
 //Category
 Route::get('/category/{id}','CategoryController@viewCategory');
+//subcategory
+Route::get('/category/{cat}/subcategory/{subcat}','SingleProductController@viewSubCategory');
 
 //AdminPanel  Authentication
-Route::get('admin/login','Admin\LoginController@showLoginForm')->name('admin.login');
+Route::get('adminpanel/login','Admin\LoginController@showLoginForm')->name('adminpanel.login');
 Route::POST('admin/login','Admin\LoginController@login');
 Route::post('admin-password/email','Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
 Route::get('admin-password/reset','Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
@@ -57,6 +63,8 @@ Route::POST('adminpanel/signout','Admin\LoginController@logout')->name('adminpan
 Route::get('/home','LoginController@home')->name('home');
 
 Auth::routes();
+
+
 Route::group(array('prefix' =>'/adminpanel'),function() {
     Route::group(['middleware' => ['auth:admin']], function () {
 
@@ -108,6 +116,7 @@ Route::group(array('prefix' =>'/adminpanel'),function() {
         Route::get('/order/delete/{id}','OrderManage@deleteorder');
         Route::get('/order/delete/delever/page/{id}','OrderManage@cancelorder');
         Route::get('/order/delivered/view/{id}','OrderManage@viewproductinformation');
+        Route::get('/order/detailview/{id}','OrderManage@detailview');
 
 //new prescription
         Route::get('/new/prescription','PrescriptionController@viewnewprescription');
@@ -126,6 +135,15 @@ Route::group(array('prefix' =>'/adminpanel'),function() {
         Route::post('/new/information/store','informationController@storeNewInformation');
         Route::get('/Manage/information','informationController@manageInformation');
         Route::get('/information/Manage/hideorshow/{id}','informationController@changestatus');
+        Route::get('/information/delete/{id}','informationController@deleteInfo');
+
+//Gateway Information
+        Route::get('/new/gateway','GatewayController@createNewInformation');
+        Route::post('/new/gateway/store','GatewayController@storeNewInformation');
+        Route::get('/manage/gateway','GatewayController@manageInformation');
+        Route::get('/gateway/hideorshow/{id}','GatewayController@changestatus');
+        Route::get('/gateway/delete/{id}','GatewayController@deleteInfo');
+
 
         Route::get('/home', function () {
             return view('admin.home');
@@ -144,4 +162,6 @@ Route::get('/o',function (){
 });
 //Auto Complete
 Route::post('/autocomplete/fetch', 'AutocompleteController@fetch')->name('autocomplete.fetch');
+
+Route::get('/NotFound','WellcomeController@pagenotfound')->name('NotFound');
 

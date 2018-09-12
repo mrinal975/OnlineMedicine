@@ -3,31 +3,6 @@
     Main | Home Page
 @endsection
 @section('carousel')
-    <div style="background-color: #f0f0ed; width: 100%; padding: 5px 0;">
-        <div class="container">
-            <div class="col-sm-9  col-xs-9 text-center" id="search-body-mobile" style="border-right: 1px solid #777;">
-                <div class="col-sm-9">
-                    <input type="text" name="country_name" id="country_name" placeholder="Search here..." class="form-control"/>
-                    
-                </div>
-                <div class="col-sm-3">
-                    <select id="productCategory" name="categoryId" class="form-control">
-                        <option value="1">Brand Name</option>
-                        <option value="2">Generic Name</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-sm-3 col-xs-3 text-center mobile-margin">
-                <a href="{{url('/prescription-upload')}}">
-                    <button style="background-color: #006394" class="btn btn-primary btn-md" id="upload-btn" >Upload Prescription</button>
-                </a>
-            </div>
-            <div id="countryList">
-            </div>
-            {{ csrf_field() }}
-            <div class="clearfix"></div>
-        </div>
-    </div>
 @endsection
 @section('mainContent')
     <div class="clearfix">&nbsp;</div>
@@ -159,10 +134,6 @@
                     </tbody>
                 </table>
                 <br>
-                <div class="row text-center">
-                    <img style="width: 50%; margin-bottom: 10px;" alt="Payments" src="http://epharma.com.bd/theme/epharma/img/we_accept.jpg" class="footer-payment">
-                </div>
-
             </aside>
         </div>
         <div class="row">

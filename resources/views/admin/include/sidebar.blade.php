@@ -50,8 +50,15 @@
                     </a>
                     <ul class="sub">
                         <li><a href="{{url('adminpanel/new/order')}}">New Order</a></li>
-                        <li><a href="{{url('adminpanel/delivered/order')}}">Manage Order</a></li>
-
+                    </ul>
+                </li>
+                    <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Sell</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="{{url('adminpanel/delivered/order')}}">Overall Sell</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -73,6 +80,17 @@
                     <ul class="sub">
                         <li><a href="{{url('adminpanel/new/information')}}">New Information</a></li>
                         <li><a href="{{url('adminpanel/Manage/information')}}">View Information</a></li>
+
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Gateway Contact</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="{{url('adminpanel/new/gateway')}}">New Gateway</a></li>
+                        <li><a href="{{url('adminpanel/manage/gateway')}}">View Gateway</a></li>
 
                     </ul>
                 </li>

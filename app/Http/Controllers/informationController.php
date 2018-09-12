@@ -39,7 +39,7 @@ class informationController extends Controller
     }
 
     public function manageInformation(){
-        $Information=Info::all();
+        $Information=Info::paginate(6);
         return view('admin.mainPageInfo.manageInfo',['Information'=>$Information]);
     }
 
@@ -75,5 +75,11 @@ class informationController extends Controller
 
         }
 
+    }
+    public function deleteInfo($id=null){
+        $info=Info::findOrFail($id);
+        unlink($info->info_logo);
+        $info->delete();
+        return redirect('adminpanel/Manage/information')->with('message',' information Deleted successfully');
     }
 }

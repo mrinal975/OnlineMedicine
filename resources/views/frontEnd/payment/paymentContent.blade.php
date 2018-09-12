@@ -22,7 +22,7 @@
                             <input type="radio" name="paymentType" value="bkash">Bkash
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="paymentType" value="paypal">Paypal
+                            <input type="radio" name="paymentType" value="rocket">Rocket
                         </label>
                     </div>
                     <div class="form-group text-center">

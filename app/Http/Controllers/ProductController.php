@@ -175,10 +175,11 @@ class ProductController extends Controller
                 $nestedData['type'] = $r->type;
                 $nestedData['brand'] = $r->brand;
                 $nestedData['publication_status'] =$r->publication_status==1 ? 'Publish':'Unpublish';
+                //class="btn btn-sm btn-primary"
                 $nestedData['action'] = '
-                    <a href="/adminpanel/product/edit/'.$r->id.'" class="btn btn-warning btn-xs" title="Edit Product"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                    <a href="/adminpanel/product/view/'.$r->id.'" class="btn btn-success btn-xs" title="View Product"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                    <a href="/adminpanel/product/delete/'.$r->id.'" class="btn btn-danger btn-xs" onclick="return confirm(Are you sure to delete);" title="Delete Product"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    <a href="/adminpanel/product/edit/'.$r->id.'" class="btn btn-xs btn-warning" title="Edit Product"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="/adminpanel/product/view/'.$r->id.'" class="btn btn-xs btn-success" title="View Product"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                    <a href="/adminpanel/product/delete/'.$r->id.'" class="btn btn-xs btn-danger" onclick="return confirm(Are you sure to delete);" title="Delete Product"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 ';
                 $data[] = $nestedData;
             }

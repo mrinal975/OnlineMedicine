@@ -29,15 +29,20 @@
                                 <td class="text-center">{{$order->phonenumber}}</td>
                                 <td class="text-center">{{$order->created_at}}</td>
                                 <td class="text-center">Tk.{{$order->orderTotal}}</td>
-                                <td class="text-center"><a href="{{url('adminpanel/order/delivered/'.$order->id)}}" title="Deliver" class="btn btn-primary"><i class="fa fa-plane" aria-hidden="true"></i>
+                                <td class="text-center">
+                                    <a href="{{url('adminpanel/order/delivered/'.$order->id)}}" title="Deliver" class="btn btn-sm btn-primary"><i class="fa fa-plane" aria-hidden="true"></i>
                                     </a>
-                                    <a href="{{url('adminpanel/order/delete/delever/page/'.$order->id)}}" title="Cancel Order" class="btn btn-danger" onclick="confirm('Are you confirm to delete ?')"><i class="fa fa-trash-o" aria-hidden="true"></i>
+                                     <a href="{{url('adminpanel/order/detailview/'.$order->id)}}" class="btn btn-sm btn-success " title="View Order"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                    <a href="{{url('adminpanel/order/delete/delever/page/'.$order->id)}}" title="Cancel Order" class="btn btn-sm btn-danger" onclick="confirm('Are you confirm to delete ?')"><i class="fa fa-trash-o" aria-hidden="true"></i>
                                     </a>
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
+                </div>
+                 <div class="pull-right">
+                    {{$newOrder->render()}}
                 </div>
             </div>
         </div>

@@ -9,9 +9,12 @@
             <div class="search">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-10 col-md-offset-1">
+                        <div class="col-sm-1"></div>
+                        <div class="col-md-8 col-md-offset-1">
                             <div class="form-section">
                                 <div class="row">
+                                     <div class="col-md-1">
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="form-group search-box">
                                             <div class="serchtile"></div>
@@ -19,19 +22,14 @@
                                             
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <div class="serchtile"></div>
-                                            <select id="productCategory" name="categoryId" class="form-control">
-                                                <option value="1">Brand Name</option>
-                                                <option value="2">Generic Name</option>
-                                            </select>
-                                        </div>
+                                    <div class="col-md-1">
                                     </div>
                                     <div class="col-md-3">
                                         <a href="{{url('/prescription-upload')}}">
                                             <button class="btn pull-right" style="background-color: #00334d; color: #FFF; width: 100%; margin-top: 17px; line-height: 23px;">Upload Prescription</button>
                                         </a>
+                                    </div>
+                                     <div class="col-md-1">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -69,47 +67,6 @@
 
 @section('mainContent')
     <div class="clearfix">&nbsp;</div>
-    <div class="container mb-lg">
-        <h2 class="slider-title">
-            <span class="inline-title">Feature Product</span>
-            <span class="line"></span>
-        </h2>
-
-        <div class="owl-carousel owl-theme manual new-products-carousel">
-            @foreach($products as $product)
-            <div class="product">
-            <figure class="product-image-area">
-            <a href="{{url('/single-Product/'.$product->id)}}" title="Product Name" class="product-image">
-
-            <img src="{{asset($product->productImage)}}" alt="{{$product->productName}}" class="responsive pdt-Img img-responsive">
-
-            </a>
-            <div class="product-label">
-            <span class="new">5%</span>
-            </div>
-            </figure>
-            <div class="product-details-area">
-            <h2 class="product-name">
-            <a href="" title="Product Name" class="name-item">{{$product->productName}}</a>
-            </h2>
-            <div class="product-price-box">
-
-            <span class="product-price">৳{{$product->productPrice}}</span>
-            </div>
-
-            <div class="product-actions">
-            <button class="add-to-cart add-to-cart" value="{{$product->id}}">
-            <span class="addToBag">
-            <i class="fa fa-shopping-cart"></i>
-            Add to Bag</span>
-            </button>
-            </div>
-            </div>
-            </div>
-                @endforeach
-        </div>
-
-    </div>
     @foreach($Category as $cat)
     <div class="container mb-lg">
         <h2 class="slider-title">
@@ -128,15 +85,15 @@
                     <a href="{{url('/single-Product/'.$product->id)}}" title="Adhesive Plaster (1box)" class="product-image">
                         <img src="{{asset($product->productImage)}}" alt="{{$product->productName}}">
                     </a>
-                    <div class="product-label">
+                    <!-- <div class="product-label">
                         <span class="new">5%</span>
-                    </div>
+                    </div> -->
                 </figure>
                 <div class="product-details-area">
                     <h2 class="product-name"><a href="{{url('/single-Product/'.$product->id)}}" title="Product Name">{{$product->productName}}</a></h2>
                     <div class="product-price-box">
-                        <span class="old-price">৳450</span>
-                        <span class="product-price">{{$product->productPrice}}</span>
+                      <!--   <span class="old-price">৳450</span> -->
+                        <span class="product-price">{{$product->productPrice}}৳</span>
                     </div>
 
                     <div class="product-actions">
@@ -160,9 +117,6 @@
 
 @endsection
 @section('js')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
     $(document).ready(function(){
     $.ajaxSetup({
@@ -193,10 +147,9 @@
     })
     });
     </script>
-    <!-- autocomplete -->
+      <!-- autocomplete -->
     <script>
         $(document).ready(function(){
-
             $('#country_name').keyup(function(){
                 var query = $(this).val();
                 if(query != '')
@@ -213,12 +166,10 @@
                     });
                 }
             });
-
             $(document).on('click', 'li', function(){
                 $('#country_name').val($(this).text());
                 $('#countryList').fadeOut();
             });
-
         });
     </script>
 @endsection

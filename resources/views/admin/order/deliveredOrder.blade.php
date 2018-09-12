@@ -29,13 +29,18 @@
                                     <td class="text-center">{{$order->phonenumber}}</td>
                                     <td class="text-center">{{$order->created_at}}</td>
                                     <td class="text-center">Tk.{{$order->orderTotal}}</td>
-                                    <td><a href="{{url('adminpanel/order/delete/'.$order->id)}}" title="Delete Order" class="btn btn-danger" onclick="confirm('Are you confirm to delete ?')"><i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    <td>
+                                        <a href="{{url('adminpanel/order/detailview/'.$order->id)}}" class="btn btn-sm btn-success " title="View Order"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                        <a href="{{url('adminpanel/order/delete/'.$order->id)}}" title="Delete Order" class="btn btn-danger" onclick="confirm('Are you confirm to delete ?')"><i class="fa fa-trash-o" aria-hidden="true"></i>
                                         </a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+                <div class="pull-right">
+                    {{$delivered->render()}}
                 </div>
             </div>
         </div>
