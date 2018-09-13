@@ -498,6 +498,7 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
 .top-nav .username {
     font-size:13px;
     color:#fff;
+    margin-left: 11px;
 }
 .top-nav ul.top-menu>li>a {
     border-radius: 100px;

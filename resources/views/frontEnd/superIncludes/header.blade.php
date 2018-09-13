@@ -49,10 +49,13 @@
                                     Home
                                 </a>
                             </li>
+                        
                              @foreach($Category as $cat)
-                            <li style="margin-top: 2px;" class="dropdown dropdown-mega-small">
+                            <li style="margin-top: 3px;" class="dropdown dropdown-mega-small">
+
                                 <a href="{{url('/category/'.$cat->id)}}" class="dropdown-toggle">
-                                    <i style="line-height: 0; margin-right: 3px; margin-top: -1px;" class=""></i>{{$cat->categoryName}}
+                                    <i style="line-height: 0; margin-right: 3px; margin-top: -1px;" class="fa fa-bars"></i>
+                                    {{$cat->categoryName}}
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
@@ -88,6 +91,7 @@
                                     Request Product
                                 </a>
                             </li>
+                            
                              <li class="pull-right ">
                                 <a href="{{url('cart/show')}}">
                                     <strong>
@@ -105,36 +109,21 @@
                                 </a>
                             </li>
                             @else
-                    
-                            <div class="pull-right">
-                             <div class="dropdown">
-                                <!-- <li class="pull-right"  style="padding-top: 12px;cursor: pointer;">
-                                    <p data-toggle="dropdown" id="menu1">Mrinal</p>
-                                    
-                                </li> -->
-                                   <!--  <button class="btn btn-success dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">{{ Auth::user()->name }}</button> -->
-                                   
-                                       <p id="menu1" data-toggle="dropdown" style="
-                                       margin-right: 3px; margin-top: 7px;cursor: pointer; color: white;">{{ Auth::user()->name }}</p>
-                                   
-                                   
-                                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                                      <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('/user/order')}}">Order</a></li>
-                                      
-                                      <li role="presentation" class="divider"></li>
-                                      <li role="presentation">
-                                          <a class="dropdown-item"
-                                           onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
-                                    </li>
-                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+
+                             <li class="pull-right dropdown">
+                                <a class="">
+                                    <span class="fa fa-user-circle" style="font-size: 13px;"></span>
+                                    <i class="dropbtn" >{{ Auth::user()->name }}</i>
+                                    <div class="dropdown-content">
+                                        <a href="{{url('/user/order')}}">Order</a>
+                                        <a onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">Logout</a>
+                                    </div>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
-                                    </ul>
-                                  </div>
-                              </div>
+                                </a>
+                            </li>                       
                             @endguest
                         </ul>
                     </nav>

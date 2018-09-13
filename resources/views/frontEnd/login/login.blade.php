@@ -1,6 +1,6 @@
 @extends('frontEnd.superMaster')
 @section('title')
-    Category Page
+    Login 
 @endsection
 @section('mainContent')
     <div role="main" class="main">

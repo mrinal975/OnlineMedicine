@@ -42,12 +42,12 @@
     <div class="footer-copyright">
         <div class="container">
             <a href="{{url('/')}}" class="logo" style="padding-top: 15px; margin-right: 20px;">
-                {{--<img style="width: 150px;" alt="ePharma" class="img-responsive" src="http://epharma.com.bd/theme/epharma/img/logo-footer.png">--}}
+                {{--<img style="width: 150px;" alt="ePharma" class="img-responsive" src="/">--}}
                 <img alt="" src="{{asset($info->info_logo)}}" class="logo-image">
             </a>
 
-            <p class="copyright-text">© Copyright 2016. All Rights Reserved by Limitless Solutions Limited.</p>
-            <p class="hidden"><a href="http://themessenger-bd.com/" target="_blank">THE MESSENGER</a></p>
+            <p class="copyright-text">© Copyright 2018. All Rights Reserved Brothers Limited.</p>
+            
         </div>
     </div>
 </footer>
