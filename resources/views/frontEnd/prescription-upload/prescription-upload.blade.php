@@ -14,7 +14,7 @@
                                     <span style="font-size: 16px; line-height: 35px; color: #0088cc" class="pull-left">Prescription Upload</span>
                                 </div>
                             </div>
-                            <h3 class="text-center text-success bg-important">{{Session::get('message')}}</h3>
+                            <h3 class="text-center bg-success bg-important">{{Session::get('message')}}</h3>
                             <div class="clearfix"></div>
 
 

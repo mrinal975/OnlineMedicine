@@ -59,6 +59,7 @@
                     </a>
                     <ul class="sub">
                         <li><a href="{{url('adminpanel/delivered/order')}}">Overall Sell</a></li>
+                        <li><a href="{{url('adminpanel/dailysell')}}">Daily Sell</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">

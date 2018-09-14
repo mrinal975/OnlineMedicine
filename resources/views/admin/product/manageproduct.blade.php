@@ -23,11 +23,9 @@
                                 <tr>
                                     <th class="text-center">Productt Name</th>
                                     <th class="text-center">Sub-Category Name</th>
+                                    <th class="text-center">Buying Cost</th>
                                     <th class="text-center">Product Price</th>
                                     <th class="text-center">Product Quantity</th>
-                                    <th class="text-center">type</th>
-                                    <th class="text-center">Brand</th>
-                                    <th class="text-center">Publication Status</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                                 </thead>
@@ -35,11 +33,9 @@
                                 <tr>
                                     <th class="text-center">Productt Name</th>
                                     <th class="text-center">Sub-Category Name</th>
+                                    <th class="text-center">Buying Cost</th>
                                     <th class="text-center">Product Price</th>
                                     <th class="text-center">Product Quantity</th>
-                                    <th class="text-center">type</th>
-                                    <th class="text-center">Brand</th>
-                                    <th class="text-center">Publication Status</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </tfoot>
@@ -52,7 +48,7 @@
     </section>
 @endsection
 @section('js')
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script>
             $('#exampleProduct').DataTable( {
@@ -67,11 +63,9 @@
                 "columns":[
                     {"data":"productName"},
                     {"data":"subcategoryId"},
+                    {"data":"productBought"},
                     {"data":"productPrice"},
                     {"data":"productQuantity"},
-                    {"data":"type"},
-                    {"data":"brand"},
-                    {"data":"publication_status"},
                     {"data":"action","searchable":false,"orderable":false}
                 ]
             } );

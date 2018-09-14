@@ -17,7 +17,8 @@
                             <th class="text-center">Product Name</th>
                             <th class="text-center">Phone Number</th>
                             <th class="text-center">Time</th>
-                            <th class="text-center">Product Price</th>
+                            <th class="text-center">Bought Price</th>
+                            <th class="text-center">Selling Price</th>
                             <th class="text-center">Action</th>
                         </tr>
                         </thead>
@@ -27,8 +28,12 @@
                                 <td class="text-center">{{$order->fulname}}</td>
                                 <td class="text-center">{{$order->productName}}</td>
                                 <td class="text-center">{{$order->phonenumber}}</td>
-                                <td class="text-center">{{$order->created_at}}</td>
-                                <td class="text-center">Tk.{{$order->orderTotal}}</td>
+                                <td class="text-center">{{
+                                    date('Y M j, h:ia',strtotime($order->created_at))
+
+                                    }}</td>
+                                <td class="text-center">TK. {{$order->buytotal}}</td>
+                                <td class="text-center">Tk. {{$order->orderTotal}}</td>
                                 <td class="text-center">
                                     <a href="{{url('adminpanel/order/delivered/'.$order->id)}}" title="Deliver" class="btn btn-sm btn-primary"><i class="fa fa-plane" aria-hidden="true"></i>
                                     </a>

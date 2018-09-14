@@ -35,7 +35,7 @@
                                         <form action="{{url('/cartQuantityUpdate/'.$cartProduct->rowId)}}">
 
                                             <div class="input-group">
-                                                <input type="number" min="1" name="qty" class="form-control" value="{{ $cartProduct->qty }}" style="height:47px;" />
+                                                <input type="number" min="1" name="qty" max="10" class="form-control" value="{{ $cartProduct->qty }}" style="height:47px;" />
                                                 <span class="input-group-btn">
                                         <button type="submit" name="btn" class="btn btn-info">
                                             <span class="fa fa-cloud-upload" ></span>

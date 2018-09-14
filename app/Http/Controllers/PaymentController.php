@@ -11,6 +11,8 @@ use App\Category;
 use App\subcategory;
 use App\Info;
 use App\Gateway;
+use App\product;
+use Auth;
 
 class PaymentController extends Controller
 {
@@ -30,51 +32,55 @@ class PaymentController extends Controller
         $info=Info::where('publication_status',1)->first();
         $Gateway=Gateway::where('publication_status',1)->first();
          $order=new Order();
-            $order->customerId=Session::get('customerid');
-            $order->shippingId=Session::get('shippingid');
-            $order->orderTotal=Session::get('orderTotal');
-            $order->orderStatus='pending';
-            //return $order->customerId.$order->shippinhId.$order->orderTotal;
-            $order->save();
+        
+        Session::get('customerid')!=null ? $customerId=Session::get('customerid')
+        :$customerId=Auth::user()->id;
+        $order->customerId=$customerId;
+        $order->shippingId=Session::get('shippingid');
+        $order->orderTotal=Session::get('orderTotal');
+        $order->orderStatus='pending';
+        //return $order->customerId.$order->shippinhId.$order->orderTotal;
+        $order->save();
 
-            $orderId=$order->id;
-            Session::put('orderId',$orderId);
+        $orderId=$order->id;
+        Session::put('orderId',$orderId);
 
-            $payment=new Payment();
-            $payment->orderId=Session::get('orderId');
-            $payment->paymentType=$request->paymentType;
-            $payment->save();
+        $payment=new Payment();
+        $payment->orderId=Session::get('orderId');
+        $payment->paymentType=$request->paymentType;
+        $payment->save();
+       $cartProducts=Cart::content();
+       $buytotal=0;
+        foreach ($cartProducts as $cartProduct){
+           $orderDetail=new OrderDetail();
+            $orderDetail->orderId=Session::get('orderId');
+            $orderDetail->productId=$cartProduct->id;
+            $orderDetail->productName=$cartProduct->name;
+            $orderDetail->productPrice=$cartProduct->price;
+            $orderDetail->productQuantity=$cartProduct->qty;
+            $orderDetail->save();
+            $product=product::findOrFail($cartProduct->id);
+            $buytotal=$buytotal+$product->productBought*$cartProduct->qty;
+            $product->productQuantity=$product->productQuantity-$cartProduct->qty;
+            $product->save();
 
-            $orderDetail=new OrderDetail();
-            $cartProducts=Cart::content();
-            foreach ($cartProducts as $cartProduct){
-                $orderDetail->orderId=Session::get('orderId');
-                $orderDetail->productId=$cartProduct->id;
-                $orderDetail->productName=$cartProduct->name;
-                $orderDetail->productPrice=$cartProduct->price;
-                $orderDetail->productQuantity=$cartProduct->qty;
-                $orderDetail->save();
-
-            }
-            Cart::destroy();
-            $phone='';
-            $way='';
+        }
+        $orderbuytotal=Order::findOrFail(Session::get('orderId'));
+        $orderbuytotal->buytotal=$buytotal;
+        $orderbuytotal->update();
+        Cart::destroy();
+        $phone='';
+        $way='';
         if($paymentType=='cashOnDelivery'){           
             $message="We will process the order soon";
             return redirect('/checkout/my-home')->with('message',$message);
 
         }else if($paymentType=='bkash'){
             $phone=$Gateway->bkas;
-            $way='bkash';
         }else if($paymentType='rocket'){
             $phone=$Gateway->rocket;
-            $way='Rocket';
         }
-        else if($paymentType='dutchbangla'){
-            $phone=$Gateway->dutchbangla;
-            $way='Dutch bangla';
-        }
-        $message=$phone."is for ".$way." .within 30min you need to send money for confirm your purchase";
+        $message=$phone." is for ".$paymentType." .within 30min you need to send money for confirm your purchase";
         return redirect('/checkout/my-home')->with('message',$message);
 
     }
@@ -84,5 +90,6 @@ class PaymentController extends Controller
         $info=Info::where('publication_status',1)->first();
         return view('frontEnd/payment/paymentConfirmed',['Category'=>$Category,'subcategory'=>$subcategory,'info'=>$info]);
     }
+
 
 }

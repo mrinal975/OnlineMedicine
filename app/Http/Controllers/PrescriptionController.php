@@ -8,13 +8,21 @@ use Illuminate\Support\Facades\Session;
 use App\subcategory;
 use App\prescription;
 use App\Info;
+use Auth;
 class PrescriptionController extends Controller
 {
     public function prescription(){
-        $Category=Category::all();
-        $subcategory=subcategory::all();
-        $info=Info::where('publication_status',1)->first();
-        return view('frontEnd.prescription-upload.prescription-upload',['Category'=>$Category,'subcategory'=>$subcategory,'info'=>$info]);
+        $customerId=Session::get('customerid');
+        if($customerId!=null || !auth()->guest()){
+            $Category=Category::all();
+            $subcategory=subcategory::all();
+            $info=Info::where('publication_status',1)->first();
+            return view('frontEnd.prescription-upload.prescription-upload',['Category'=>$Category,'subcategory'=>$subcategory,'info'=>$info]);
+
+        }else{
+            return redirect('/login')->with('message','To upload prescription you need to login first');
+        }
+
     }
 
     public function uploadprescripton(Request $request){
@@ -46,7 +54,14 @@ class PrescriptionController extends Controller
     }
 
     protected function savePrescriptionInfoWithoutQuestion($request,$imageUrl){
-		$prescription=new prescription();
+		
+        Session::get('customerid')!=null ? $customerId=Session::get('customerid')
+        :$customerId=Auth::user()->id;
+        // if (Session::get('customerid')!=null) {
+        //     $customerId=Session::get('customerid');
+        // }else
+        $prescription=new prescription();
+        $prescription->customerId=$customerId;
         $prescription->customerName=$request->customerName;
         $prescription->customerPhone=$request->customerPhone;
         $prescription->customerEmail=$request->customerEmail;
@@ -55,6 +70,9 @@ class PrescriptionController extends Controller
         $prescription->save();
     }
     protected function savePrescriptionsInfoWithQuestion($request,$imageUrl){
+         Session::get('customerid')!=null ? $customerId=Session::get('customerid')
+        :$customerId=Auth::user()->id;
+
 		$prescription=new prescription();
         $prescription->customerName=$request->customerName;
         $prescription->customerPhone=$request->customerPhone;
@@ -158,6 +176,16 @@ class PrescriptionController extends Controller
        
     }
 
-
+    public function userPrescription(){
+        $Category=Category::all();
+        $subcategory=subcategory::all();
+        $info=Info::where('publication_status',1)->first();
+        Session::get('customerid')!=null ? $customerId=Session::get('customerid')
+        :$customerId=Auth::user()->id;
+        $prescription=prescription::where('customerid','=',$customerId)
+                    ->orderBy('id','DESC')
+                    ->paginate(6);
+        return view('frontEnd.prescription-upload.userprescription',['Category'=>$Category,'subcategory'=>$subcategory,'info'=>$info,'prescription'=>$prescription]);
+    }
 
 }

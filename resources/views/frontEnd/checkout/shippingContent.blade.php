@@ -1,6 +1,6 @@
 @extends('frontEnd.superMaster')
 @section('title')
-    Main | Home Page
+    Main | Shipping
 @endsection
 @section('mainContent')
     <div class="container">

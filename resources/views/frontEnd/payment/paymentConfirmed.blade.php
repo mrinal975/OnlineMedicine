@@ -10,7 +10,7 @@
                 <br><br>
             <div class="card">
                 <br>
-                <h2 class="text-center text-success">{{Session::get('message')}}</h2>
+                <h2 class="text-center bg-success">{{Session::get('message')}}</h2>
                 <br>
             </div>
        

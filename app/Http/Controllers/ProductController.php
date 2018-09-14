@@ -16,6 +16,7 @@ class ProductController extends Controller
         $this->validate($request,[
             'productName'=>'required',
             'subcategoryId'=>'required',
+            'productBought'=>'required',
             'productPrice'=>'required|numeric',
             'productQuantity'=>'required|numeric',
             'productShortDescriptoin'=>'required',
@@ -41,6 +42,7 @@ class ProductController extends Controller
         $product=new Product();
         $product->productName=$request->productName;
         $product->subcategoryId=$request->subcategoryId;
+        $product->productBought=$request->productBought;
         $product->productPrice=$request->productPrice;
         $product->productQuantity=$request->productQuantity;
         $product->productShortDescriptoin=$request->productShortDescriptoin;
@@ -71,6 +73,7 @@ class ProductController extends Controller
         $this->validate($request,[
             'productName'=>'required',
             'subcategoryId'=>'required',
+            'productBought'=>'required',
             'productPrice'=>'required|numeric',
             'productQuantity'=>'required|numeric',
             'productShortDescriptoin'=>'required',
@@ -85,6 +88,7 @@ class ProductController extends Controller
         $productById=Product::where('id',$request->productId)->first();
         $productById->productName=$request->productName;
         $productById->subcategoryId=$request->subcategoryId;
+        $productById->productBought=$request->productBought;
         $productById->productPrice=$request->productPrice;
         $productById->productQuantity=$request->productQuantity;
         $productById->productShortDescriptoin=$request->productShortDescriptoin;
@@ -128,12 +132,10 @@ class ProductController extends Controller
         $columns = array(
             0 => 'productName',
             1 => 'subcategoryId',
-            2 => 'productPrice',
-            3 => 'productQuantity',
-            4 => 'type',
-            5 => 'brand',
-            6 => 'publication_status',
-            7 => 'action'
+            2 => 'productBought',
+            3 => 'productPrice',
+            4 => 'productQuantity',
+            5 => 'action'
         );
         
         $totalData = product::count();
@@ -150,12 +152,12 @@ class ProductController extends Controller
             $totalFiltered = product::count();
         }else{
             $search = $request->input('search.value');
-            $product = product::where('productName', 'like', "%{$search}%")
+            $product = product::where('productQuantity', 'like', "%{$search}%")
                             ->offset($start)
                             ->limit($limit)
                             ->orderBy($order, $dir)
                             ->get();
-            $totalFiltered = product::where('productName', 'like', "%{$search}%")
+            $totalFiltered = product::where('productQuantity', 'like', "%{$search}%")
                             ->count();
         }       
                     
@@ -170,11 +172,9 @@ class ProductController extends Controller
                         $nestedData['subcategoryId'] = $subcat->subcategoryName;        
                     }
                 }
+                $nestedData['productBought'] = $r->productBought;
                 $nestedData['productPrice'] = $r->productPrice;
                 $nestedData['productQuantity'] = $r->productQuantity;
-                $nestedData['type'] = $r->type;
-                $nestedData['brand'] = $r->brand;
-                $nestedData['publication_status'] =$r->publication_status==1 ? 'Publish':'Unpublish';
                 //class="btn btn-sm btn-primary"
                 $nestedData['action'] = '
                     <a href="/adminpanel/product/edit/'.$r->id.'" class="btn btn-xs btn-warning" title="Edit Product"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
@@ -193,7 +193,74 @@ class ProductController extends Controller
         );
         
         echo json_encode($json_data);
-    
-       
+
+    // $subcategory= subcategory::all();
+    // $columns = array(
+    //         0 => 'productName',
+    //         1 => 'subcategoryId',
+    //         2 => 'productBought',
+    //         3 => 'productPrice',
+    //         4 => 'productQuantity',
+    //         5 => 'action'
+    // );
+        
+    //     $totalData = product::count();
+    //     $limit = $request->input('length');
+    //     $start = $request->input('start');
+    //     $order = $columns[$request->input('order.0.column')];
+    //     $dir = $request->input('order.0.dir');
+        
+    //     if(empty($request->input('search.value'))){
+    //         $posts = product::offset($start)
+    //                 ->limit($limit)
+    //                 ->orderBy($order,$dir)
+    //                 ->get();
+    //         $totalFiltered = product::count();
+    //     }else{
+    //         $search = $request->input('search.value');
+    //         $product = product::where('productName', 'like', "%{$search}%")
+    //                         ->orWhere('productQuantity','like',"%{$search}%")
+    //                         ->offset($start)
+    //                         ->limit($limit)
+    //                         ->orderBy($order, $dir)
+    //                         ->get();
+    //         $totalFiltered = product::where('productName', 'like', "%{$search}%")
+    //                         ->orWhere('productQuantity','like',"%{$search}%")
+    //                         ->count();
+    //     }       
+                    
+        
+    //     $data = array();
+
+    //     $subcategory=subcategory::all();
+    //     if($product){
+    //         foreach($product as $r){
+    //             $nestedData['productName'] = $r->productName;
+    //             foreach($subcategory as $subcat){
+    //                 if($r->subcategoryId==$subcat->id){
+    //                     $nestedData['subcategoryId'] = $subcat->subcategoryName;        
+    //                 }
+    //             }
+    //             $nestedData['productBought'] = $r->productBought;
+    //             $nestedData['productPrice'] = $r->productPrice;
+    //             $nestedData['productQuantity'] = $r->productQuantity;
+    //             //class="btn btn-sm btn-primary"
+    //             $nestedData['action'] = '
+    //                 <a href="/adminpanel/product/edit/'.$r->id.'" class="btn btn-xs btn-warning" title="Edit Product"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+    //                 <a href="/adminpanel/product/view/'.$r->id.'" class="btn btn-xs btn-success" title="View Product"><i class="fa fa-eye" aria-hidden="true"></i></a>
+    //                 <a href="/adminpanel/product/delete/'.$r->id.'" class="btn btn-xs btn-danger" onclick="return confirm(Are you sure to delete);" title="Delete Product"><i class="fa fa-trash" aria-hidden="true"></i></a>
+    //             ';
+    //             $data[] = $nestedData;
+    //         }
+    //     }
+        
+    //     $json_data = array(
+    //         "draw"          => intval($request->input('draw')),
+    //         "recordsTotal"  => intval($totalData),
+    //         "recordsFiltered" => intval($totalFiltered),
+    //         "data"          => $data
+    //     );
+        
+    //     echo json_encode($json_data);
     }
 }

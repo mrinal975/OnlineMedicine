@@ -40,6 +40,18 @@
                             <div class="col-sm-3"></div>
                         </div>
                         <div class="form-group ">
+                            <label for="productBought" class="col-sm-4 control-label">Product Price</label>
+                            <div class="col-sm-5 {{ $errors->has('productBought') ? ' has-error' : '' }}">
+                                <input type="number" min="0" class="form-control" name="productBought" value="{{$productById->productBought}}">
+                                @if ($errors->has('productBought'))
+                                    <span class="help-block">
+                                <strong class="text-danger">{{ $errors->first('productBought') }}</strong>
+                            </span>
+                                @endif
+                            </div>
+                            <div class="col-sm-3"></div>
+                        </div>
+                        <div class="form-group ">
                             <label for="productPrice" class="col-sm-4 control-label">Product Price</label>
                             <div class="col-sm-5 {{ $errors->has('productPrice') ? ' has-error' : '' }}">
                                 <input type="number" min="0" class="form-control" name="productPrice" value="{{$productById->productPrice}}">

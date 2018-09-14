@@ -55,7 +55,7 @@
                         <div class="col-md-8 market-update-left">
                             <h4>Sales</h4>
                             <h3>{{$sell}}</h3>
-                            <p>Overall sell over here on online medicine</p>
+                            <p>Overall sell over here </p>
                         </div>
                         <div class="clearfix"> </div>
                     </div>

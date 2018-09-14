@@ -21,6 +21,7 @@
                             <form role="form" method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                                 @csrf
                                 <div class="col-sm-12">
+                                    <h4 class="text-center bg-danger">{{Session::get('message')}}</h4>
                                     <div class="form-content">
                                     
                                         <h3 style="color: #0088cc !important" class="heading-text-color font-weight-normal">LOGIN</h3>

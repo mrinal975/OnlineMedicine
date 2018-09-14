@@ -60,6 +60,7 @@
     <link rel="stylesheet" href="{{asset('superfrontEnd/sweetalert2/6.5.5/sweetalert2.min.css')}}">
     <link rel="stylesheet" href="{{asset('superfrontEnd/ui/1.11.4/themes/smoothness/jquery-ui.css')}}">
     <!-- Head Libs -->
+    @yield('css')
     <script src="{{asset('superfrontEnd/theme/epharma/css/vendor/modernizr/modernizr.min.js')}}"></script>
 
     <style>

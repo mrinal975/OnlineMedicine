@@ -27,8 +27,6 @@ Route::get('/checkout','CheckoutController@index');
 Route::post('/checkout/sign-up','CheckoutUser@customerRegister');
 Route::post('/checkout/sign-in','CheckoutUser@customerLogin');
 
-// Order of customer to watch Customer
-Route::get('/user/order','WellcomeController@viewCustomerOrder');
 
 
 //shipping information Route
@@ -43,6 +41,8 @@ Route::get('/checkout/my-home','PaymentController@paymentConfired');
 //prescription-upload Route
 Route::get('/prescription-upload','PrescriptionController@prescription')->name('prescription-upload');
 Route::post('/prescription','PrescriptionController@uploadprescripton')->name('prescription');
+Route::get('/user/Prescription','PrescriptionController@userPrescription')->name('');
+
 
 //product Single Page Route
 Route::get('/single-Product/{id}','SingleProductController@showSingleProduct')->name('prescription-upload');
@@ -65,10 +65,24 @@ Route::get('/home','LoginController@home')->name('home');
 Auth::routes();
 
 
+
+
+
+Route::group(['middleware' =>'auth'], function () {
+/// Payment For purchase
+    Route::get('/payment/complete/{id}','PaymentVerificationController@finalpaymentform')->name('finalpayment');
+    Route::post('/payment/complete','PaymentVerificationController@finalpaymentstore');
+    // Order of customer to watch Customer 
+    Route::get('/user/order','WellcomeController@viewCustomerOrder');
+    //customer receive Product
+    Route::get('/product/receive/{id}','PaymentVerificationController@receiveProduct');
+    Route::get('/view/orderdetails/{id}','PaymentVerificationController@orderdetails');
+    
+});
+
+
 Route::group(array('prefix' =>'/adminpanel'),function() {
     Route::group(['middleware' => ['auth:admin']], function () {
-
-
 //Admin Panel Home Page
         Route::get('/','WellcomeController@admin')->name('adminpanel');
 
@@ -115,8 +129,12 @@ Route::group(array('prefix' =>'/adminpanel'),function() {
         Route::get('/delivered/order','OrderManage@devilered');
         Route::get('/order/delete/{id}','OrderManage@deleteorder');
         Route::get('/order/delete/delever/page/{id}','OrderManage@cancelorder');
+        Route::get('/order/delete/delever/{id}','OrderManage@cancelsell');
         Route::get('/order/delivered/view/{id}','OrderManage@viewproductinformation');
         Route::get('/order/detailview/{id}','OrderManage@detailview');
+
+        //Order Status
+        Route::get('/dailysell','OrderManage@datewisedata')->name('o');
 
 //new prescription
         Route::get('/new/prescription','PrescriptionController@viewnewprescription');
@@ -126,8 +144,6 @@ Route::group(array('prefix' =>'/adminpanel'),function() {
 
 //prescription Processing Route
         Route::post('/data/prescription','PrescriptionController@processprescription')->name('dataProcessingPrescription');
-
-
         
 
 //FrontEnd Information
@@ -157,11 +173,7 @@ Route::group(array('prefix' =>'/adminpanel'),function() {
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/o',function (){
-    return view('frontEnd.home');
-});
 //Auto Complete
-Route::post('/autocomplete/fetch', 'AutocompleteController@fetch')->name('autocomplete.fetch');
+Route::post('/autocomplete/fetch','AutocompleteController@fetch')->name('autocomplete.fetch');
 
 Route::get('/NotFound','WellcomeController@pagenotfound')->name('NotFound');
-

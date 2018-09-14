@@ -40,8 +40,10 @@ class CartController extends Controller
         $subcategory=subcategory::all();
         $publishedCategory=Category::all();
         $cartProduct=Cart::content();
+
         $info=Info::where('publication_status',1)->first();
-        return view('frontEnd.cart.showCart',compact('cartProduct'),['publishedCategory'=>$publishedCategory,'Category'=>$Category,'subcategory'=>$subcategory,'info'=>$info]);
+        
+        return view('frontEnd.cart.showCart',['cartProduct'=>$cartProduct,'publishedCategory'=>$publishedCategory,'Category'=>$Category,'subcategory'=>$subcategory,'info'=>$info]);
     }
 
     public function QuantityUpdate(Request $request,$id){

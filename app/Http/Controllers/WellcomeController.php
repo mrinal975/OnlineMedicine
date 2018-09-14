@@ -36,9 +36,11 @@ class WellcomeController extends Controller
              $newOrder=DB::table('orders')
             ->join('shippings','orders.shippingId','=','shippings.id')
             ->join('order_details','orders.id','=','order_details.orderId')
-            ->select('shippings.fulname','shippings.phonenumber','orders.orderTotal','orders.id','orders.created_at','orders.orderStatus','order_details.productName','order_details.productId')
-            ->where('customerId',$id)
-            ->paginate(3);
+            ->join('payments','orders.id','=','payments.orderId')
+            ->select('shippings.fulname','shippings.phonenumber','orders.orderTotal','orders.customerStatus','orders.created_at','orders.orderStatus','order_details.orderId','order_details.productName','payments.paymentType','payments.id','payments.paymentStatus')
+            ->where('orders.customerId',$id)
+            ->orderBy('orders.id', 'DESC')
+            ->paginate(6);
         }
         return view('frontEnd.vieworder.vieworder',['Category'=>$Category,'subcategory'=>$subcategory,'info'=>$info,'newOrder'=>$newOrder]);
     }

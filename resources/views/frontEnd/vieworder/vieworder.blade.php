@@ -16,27 +16,57 @@
                     <table class="datatable table table-striped table-bordered">
                         <thead>
                         <tr>
-                            <th class="text-center">Product Name</th>
-                            <th class="text-center">Phone Number</th>
+                            <th class="text-center">Order Details</th>
                             <th class="text-center">Ordered Time</th>
                             <th class="text-center">Product Price</th>
-                            <th char="text-center">Order status</th>
+                            <th char="text-center">Delivery status</th>
+                            <th char="text-center">Receive Product</th>
+                            <th char="text-center">Payment</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($newOrder as $order)
                             <tr>
                                 <td class="text-center">
-                                    <a href="{{url('/single-Product/'.$order->productId)}}">{{$order->productName}}</a>
+                                    <a href="{{url('/view/orderdetails/'.$order->orderId)}}" class="btn btn-sm btn-info">
+                                        <i class="fa fa-eye" title="View purchase Detail"></i>
+                                    </a>
                                 </td>
-                                <td class="text-center">{{$order->phonenumber}}</td>
-                                <td class="text-center">{{$order->created_at}}</td>
+                                <td class="text-center">{{
+                                date('Y M j, h:i:a',strtotime($order->created_at))
+                                   }}</td>
                                 <td class="text-center">Tk.{{$order->orderTotal}}</td>
-                                <th char="text-center">@if($order->orderStatus=="pending")
-                                	<p>Not Arribed</p>
+                                <th class="text-center">@if($order->orderStatus=="pending")
+                                	<p >Not Send</p>
                                 	@else
-                                	<p>Arribed</p>
+                                	<p>Send</p>
                                 	@endif
+                                </th>
+                                <th class="text-center">
+                                     @if($order->paymentType=='rocket' || $order->paymentType=='bkash')
+                                    @if($order->paymentStatus=='confirm' && $order->customerStatus=='pending')
+                                        <a class="btn btn-sm btn-success" href="{{url('/product/receive/'.$order->orderId)}}">Receive Product</a>
+                                    @else
+                                        Thanks
+                                    @endif 
+                                    @else
+                                    @if($order->customerStatus=='pending')
+                                    <a class="btn btn-sm btn-success" href="{{url('/product/receive/'.$order->orderId)}}">Receive Product</a>
+                                    @else
+                                        Thanks
+                                    @endif
+                                    @endif  
+                                </th>
+                                <th char="text-center">
+                                    @if($order->paymentType=='rocket' || $order->paymentType=='bkash')
+                                        @if($order->paymentStatus!='confirm')
+                                        <a href="{{url('/payment/complete/'.$order->id)}}">Complete Payment</a>
+                                        @else
+                                        <p>Payment Confirm</p>
+                                        @endif    
+                                    @else
+                                    <p>Cash on Delibery</p>
+                                    @endif
                                 </th>
                             </tr>
                         @endforeach

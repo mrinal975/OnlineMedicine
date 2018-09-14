@@ -63,15 +63,15 @@
                                             <div class="row">
                                                 <div class="col-md-7">
                                                     <div class="row">
-                                                        <ul class="dropdown-mega-sub-nav">
-                                                            @foreach($subcategory as $subcat)
-                                                                @if($cat->id==$subcat->categoryId)
-                                                            <div class="col-md-6">
-                                                                <li><a href="
-                                                                    {{url('/category/'.$cat->id.'/subcategory/'.$subcat->id)}}">{{$subcat->subcategoryName}}</a></li>
-                                                            </div>
-                                                                @endif
-                                                                @endforeach
+            <ul class="dropdown-mega-sub-nav">
+                @foreach($subcategory as $subcat)
+                    @if($cat->id==$subcat->categoryId)
+                <div class="col-md-6">
+                    <li><a href="
+                        {{url('/category/'.$cat->id.'/subcategory/'.$subcat->id)}}">{{$subcat->subcategoryName}}</a></li>
+                </div>
+                    @endif
+                    @endforeach
                                                         </ul>
                                                     </div>
                                                     <div class="col-md-5 mega -banner-bg">
@@ -85,13 +85,6 @@
                                 <div class="clearfix"></div>
                             </li>
                             @endforeach
-                            <li>
-                                <a href="{{url('/prescription-upload')}}">
-                                    <i class="fa fa-pencil-square-o"></i>
-                                    Request Product
-                                </a>
-                            </li>
-                            
                              <li class="pull-right ">
                                 <a href="{{url('cart/show')}}">
                                     <strong>
@@ -116,6 +109,7 @@
                                     <i class="dropbtn" >{{ Auth::user()->name }}</i>
                                     <div class="dropdown-content">
                                         <a href="{{url('/user/order')}}">Order</a>
+                                        <a href="{{url('/user/Prescription')}}">Prescription</a>
                                         <a onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">Logout</a>
                                     </div>
