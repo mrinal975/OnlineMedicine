@@ -61,15 +61,13 @@
                                         $int=mt_rand(30, 150);
                                         $price=$product->productPrice+$int;
                                         ?>
-                                        <span class="old-price">৳{{$price}}</span>
-                                        <span class="product-price">৳{{$product->productPrice}}<b style="font-weight: normal; font-size: 12px; color: #777;">&nbsp;&nbsp;(Per Unit)</b></span>
+                                        <!-- <span class="old-price">৳{{$price}}</span> -->
+                                        <span class="product-price">{{$product->productPrice}} ৳<b style="font-weight: normal; font-size: 12px; color: #777;">&nbsp;&nbsp;(Per Unit)</b></span>
                                     </div>
                                     <p class="availability">
                                         <!--<span class="font-weight-semibold">Qty / Box Details:</span>-->
-                                        Size: Large
-                                        Weight Range: 9-14 Kg
-                                        50 Pcs Packet
-                                        Made in Malaysia
+                                        {{$product->productShortDescriptoin}}
+                                        
                                     </p>
                                 </div>
 
@@ -155,8 +153,8 @@
                         <div class="product-details-area">
                             <h2 class="product-name"><a href="{{asset('/single-Product/'.$similar->id)}}" title="{{$similar->productName}}">{{$similar->productName}}</a></h2>
                             <div class="product-price-box">
-                                <span class="old-price">৳1950</span>
-                                <span class="product-price">{{$similar->productPrice}}</span>
+<!--                                 <span class="old-price">৳1950</span> -->
+                                <span class="product-price">{{$similar->productPrice}} ৳</span>
                             </div>
                             <div class="product-actions">
                                 <!--                                <div class="product-detail-qty">
@@ -165,7 +163,7 @@
                                                                     <input name="rel_token" type="hidden" value="rpp1aebGD56FGch7qLySLRuFCheoVOoStjYiOf4P">
                                                                 </div>-->
                                 <!--<a href="#" class="addtocart button related-btn-cart" title="Add to Bag">-->
-                                <button class="add-to-cart add-to-cart" value="{{$product->id}}">
+                                <button id="addbtn" class="add-to-cart add-to-cart" value="{{$product->id}}">
                                         <span class="addToBag">
                                         <i class="fa fa-shopping-cart"></i>
                                         Add to Bag</span>

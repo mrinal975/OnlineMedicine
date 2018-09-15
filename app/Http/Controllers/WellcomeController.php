@@ -35,9 +35,9 @@ class WellcomeController extends Controller
         if ($id!=null) {
              $newOrder=DB::table('orders')
             ->join('shippings','orders.shippingId','=','shippings.id')
-            ->join('order_details','orders.id','=','order_details.orderId')
+            // ->join('order_details','orders.id','=','order_details.orderId')
             ->join('payments','orders.id','=','payments.orderId')
-            ->select('shippings.fulname','shippings.phonenumber','orders.orderTotal','orders.customerStatus','orders.created_at','orders.orderStatus','order_details.orderId','order_details.productName','payments.paymentType','payments.id','payments.paymentStatus')
+            ->select('shippings.fulname','shippings.phonenumber','orders.orderTotal','orders.customerStatus','orders.created_at','orders.orderStatus','payments.orderId','payments.paymentType','payments.id','payments.paymentStatus')
             ->where('orders.customerId',$id)
             ->orderBy('orders.id', 'DESC')
             ->paginate(6);

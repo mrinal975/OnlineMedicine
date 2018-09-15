@@ -13,6 +13,7 @@ class PrescriptionController extends Controller
 {
     public function prescription(){
         $customerId=Session::get('customerid');
+        
         if($customerId!=null || !auth()->guest()){
             $Category=Category::all();
             $subcategory=subcategory::all();

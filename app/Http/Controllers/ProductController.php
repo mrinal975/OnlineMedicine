@@ -22,7 +22,6 @@ class ProductController extends Controller
             'productShortDescriptoin'=>'required',
             'type'=>'required',
             'brand'=>'required',
-            'genericName'=>'required',
             'publication_status'=>'required',
             'productImage'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
         ]);
@@ -50,6 +49,10 @@ class ProductController extends Controller
         $product->type=$request->type;
         $product->brand=$request->brand;
         $product->genericName=$request->genericName;
+        
+        if( empty($product->genericName) || $product->genericName==null){
+            $product->genericName='';
+        }
         $product->productImage=$imageUrl;
         $product->publication_status=$request->publication_status;
         $product->save();

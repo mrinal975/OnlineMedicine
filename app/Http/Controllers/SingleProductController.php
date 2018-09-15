@@ -19,7 +19,7 @@ class SingleProductController extends Controller
             ->where('products.id',$id)
             ->get();
         $pro=product::find($id);
-        $similarproduct=product::where('subcategoryId',$pro->subcategoryId)->paginate(8);
+        $similarproduct=product::where('subcategoryId',$pro->subcategoryId)->get();
         $Category=Category::all();
         $subcategory=subcategory::all();
         $info=Info::where('publication_status',1)->first();

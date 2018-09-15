@@ -65,11 +65,16 @@
 
     <style>
     .itemclass{
-        margin:15px;
+        margin:20px;
+
+    }
+    .background_card_notify{
+        padding: 1px;
+        background-color: #098;
     }
     .stylecard{
     position: fixed;
-    z-index: 99999;
+    z-index: 9999999999;
     }
     .toshow {
     display:none;

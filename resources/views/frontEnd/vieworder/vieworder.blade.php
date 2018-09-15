@@ -34,7 +34,8 @@
                                 </td>
                                 <td class="text-center">{{
                                 date('Y M j, h:i:a',strtotime($order->created_at))
-                                   }}</td>
+                                   }}
+                               </td>
                                 <td class="text-center">Tk.{{$order->orderTotal}}</td>
                                 <th class="text-center">@if($order->orderStatus=="pending")
                                 	<p >Not Send</p>
@@ -44,10 +45,11 @@
                                 </th>
                                 <th class="text-center">
                                      @if($order->paymentType=='rocket' || $order->paymentType=='bkash')
+
                                     @if($order->paymentStatus=='confirm' && $order->customerStatus=='pending')
                                         <a class="btn btn-sm btn-success" href="{{url('/product/receive/'.$order->orderId)}}">Receive Product</a>
                                     @else
-                                        Thanks
+                                        Got Product
                                     @endif 
                                     @else
                                     @if($order->customerStatus=='pending')

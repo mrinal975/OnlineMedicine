@@ -14,7 +14,8 @@
                                     <span style="font-size: 16px; line-height: 35px; color: #0088cc" class="pull-left">Prescription Upload</span>
                                 </div>
                             </div>
-                            <h3 class="text-center bg-success bg-important">{{Session::get('message')}}</h3>
+                            <br>
+                            <h3 class="text-center">{{Session::get('message')}}</h3>
                             <div class="clearfix"></div>
 
 
@@ -36,7 +37,7 @@
                                             </div>
                                             <div class="col-sm-6 col-xs-12">
                                                 <label class="font-weight-normal">Mobile <span class="required">*</span></label>
-                                                <input type="text" name="customerPhone" class="form-control">
+                                                <input type="number" name="customerPhone" class="form-control">
                                                 @if ($errors->has('customerPhone'))
                                                     <span class="help-block">
                                                          <strong class="text-danger">{{ $errors->first('customerPhone') }}</strong>

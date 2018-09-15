@@ -81,12 +81,12 @@
                     @endif
                     @if($data==1)
                     <tr>
-                        <td>phonenumber :</td>
-                        <td>{{$payment_verifications->secretkey}}</td>
+                        <td>phonenumber :</td> 
+                        <td>{{$payment_verifications->Phone}}</td>
                     </tr>
                     <tr>
                         <td>Generated Key</td>
-                        <td>{{$payment_verifications->Phone}}</td>
+                        <td>{{$payment_verifications->secretkey}}</td>
                     </tr>
                     @endif
                 </table>

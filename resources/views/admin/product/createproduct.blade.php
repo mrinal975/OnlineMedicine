@@ -118,11 +118,11 @@
                             <label for="genericName" class="col-sm-4 control-label">Generic Name</label>
                             <div class="col-sm-5 {{ $errors->has('productPrice') ? ' has-error' : '' }}">
                                 <input type="text" class="form-control" name="genericName">
-                                @if ($errors->has('genericName'))
-                                    <span class="help-block">
+                              <!--   @if ($errors->has('genericName'))
+                                <span class="help-block">
                                 <strong class="text-danger">{{ $errors->first('genericName') }}</strong>
                             </span>
-                                @endif
+                                @endif -->
                             </div>
                             <div class="col-sm-1"></div>
                         </div>

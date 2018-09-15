@@ -34,7 +34,7 @@ class PaymentVerificationController extends Controller
         $Payment=Payment::findOrFail($request->paymentId);
         $Payment->paymentStatus='confirm';
         $Payment->update();
-        return redirect('/checkout/my-home')->with('message','Payment Successfully done.....');
+        return redirect('/user/order')->with('message','Payment Successfully done.....');
     }
    public function receiveProduct($id=null){
         $Order=Order::findOrFail($id);

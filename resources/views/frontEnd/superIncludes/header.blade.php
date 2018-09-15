@@ -129,8 +129,8 @@
 
 <div class="toshow" id="pop">
     <div class="stylecard">
-        <div class="bg-success">
-            <h1 class="itemclass">An item added to card</h1>
+        <div class="background_card_notify">
+            <h1 class="itemclass" style="color: white;">An item added to card</h1>
         </div>
 </div>
 </div>

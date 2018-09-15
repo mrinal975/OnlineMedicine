@@ -101,8 +101,8 @@
                                         </div>
 
                                         <div class="product-price-box">
-                                            <span class="old-price">৳1200</span>
-                                            <span class="product-price">{{$product->productName}}</span>
+                                            <!-- <span class="old-price">৳1200</span> -->
+                                            <span class="product-price">{{$product->productPrice}} ৳</span>
                                         </div>
 
                                         <div class="product-actions">
