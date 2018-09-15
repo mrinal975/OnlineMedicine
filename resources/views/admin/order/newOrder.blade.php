@@ -13,8 +13,8 @@
                     <table class="datatable table table-striped table-bordered">
                         <thead>
                         <tr>
+                            <th class="text-center">Order Code</th>
                             <th class="text-center">Customer Name</th>
-                            <th class="text-center">Product Name</th>
                             <th class="text-center">Phone Number</th>
                             <th class="text-center">Time</th>
                             <th class="text-center">Bought Price</th>
@@ -25,8 +25,8 @@
                         <tbody>
                         @foreach($newOrder as $order)
                             <tr>
+                                <td class="text-center">{{$order->ordercode}}</td>
                                 <td class="text-center">{{$order->fulname}}</td>
-                                <td class="text-center">{{$order->productName}}</td>
                                 <td class="text-center">{{$order->phonenumber}}</td>
                                 <td class="text-center">{{
                                     date('Y M j, h:ia',strtotime($order->created_at))

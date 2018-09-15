@@ -72,7 +72,7 @@
                                 </div>
 
                                 <div class="product-actions">
-                                    <button id="addbtn" class="add-to-cart add-to-cart" value="{{$product->id}}">
+                                    <button onclick="showToast('Item added to card')" class="add-to-cart add-to-cart" value="{{$product->id}}">
                                         <span class="addToBag">
                                         <i class="fa fa-shopping-cart"></i>
                                         Add to Bag</span>
@@ -88,7 +88,7 @@
                                     </p>
                                     <p class="availability">
                                         <span class="font-weight-semibold">Type:</span>
-                                        Diaper
+                                        {{$product->type}}
                                     </p>
                                 </div>
 
@@ -163,7 +163,7 @@
                                                                     <input name="rel_token" type="hidden" value="rpp1aebGD56FGch7qLySLRuFCheoVOoStjYiOf4P">
                                                                 </div>-->
                                 <!--<a href="#" class="addtocart button related-btn-cart" title="Add to Bag">-->
-                                <button id="addbtn" class="add-to-cart add-to-cart" value="{{$product->id}}">
+                                <button onclick="showToast('Item added to card')" class="add-to-cart add-to-cart" value="{{$product->id}}">
                                         <span class="addToBag">
                                         <i class="fa fa-shopping-cart"></i>
                                         Add to Bag</span>

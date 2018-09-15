@@ -15,7 +15,7 @@ class SingleProductController extends Controller
     public function showSingleProduct($id=null){
         $products=DB::table('products')
             ->join('subcategories','products.subcategoryId','=','subcategories.id')
-            ->select('products.id','products.productName','products.subcategoryId','products.productPrice','products.productShortDescriptoin','products.brand','products.genericName','products.productImage','subcategories.subcategoryName')
+            ->select('products.id','products.productName','products.subcategoryId','products.productPrice','products.productShortDescriptoin','products.type','products.brand','products.genericName','products.productImage','subcategories.subcategoryName')
             ->where('products.id',$id)
             ->get();
         $pro=product::find($id);

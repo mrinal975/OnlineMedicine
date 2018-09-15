@@ -64,20 +64,30 @@
     <script src="{{asset('superfrontEnd/theme/epharma/css/vendor/modernizr/modernizr.min.js')}}"></script>
 
     <style>
-    .itemclass{
-        margin:20px;
+        #toast{
+          position:fixed;
+          top:10;
+          left:50%;
+          transform:translate(-50%);
+          background-color:#5981EC;
+          color:#fff;
+          padding:16px;
+          border-radius:5px;
+          text-align:center;
+          z-index:1;
+          box-shadow:0 0 20px rgba(0,0,0,0.3);
+          visibility:hidden;
+          opacity:0;
+        }
 
+    #toast.show{
+      visibility:visible;
+      animation:fadeInOut 2s;
     }
-    .background_card_notify{
-        padding: 1px;
-        background-color: #098;
-    }
-    .stylecard{
-    position: fixed;
-    z-index: 9999999999;
-    }
-    .toshow {
-    display:none;
+
+    @keyframes fadeInOut{
+      1%,95%{opacity:1;top:180px}
+      15%,85%{opacity:1;top:160px}
     }
     .fa{
         line-height: 30px;
@@ -327,12 +337,14 @@ ga('send', 'pageview');
         @yield('js')
 
 <script type="text/javascript">
-    $( "#addbtn" ).click(function() {
-   $( "#pop" ).show(); 
-   setTimeout(function() {
-      $( "#pop" ).hide();
-    }, 900);
-});
+    function showToast(text){
+  var x=document.getElementById("toast");
+  x.classList.add("show");
+  x.innerHTML=text;
+  setTimeout(function(){
+    x.classList.remove("show");
+  },3000);
+}
 </script>
 </body>
 </html>

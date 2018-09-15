@@ -31,13 +31,21 @@ class PaymentController extends Controller
         $paymentType=$request->paymentType;
         $info=Info::where('publication_status',1)->first();
         $Gateway=Gateway::where('publication_status',1)->first();
-         $order=new Order();
         
+        do{
+         $random=random_int(000000,999999);
+        }
+        while (Order::where('ordercode', '=',$random)->exists());
+        $random;
+        $order=new Order();
+        Session::put('random',$random);
+
         Session::get('customerid')!=null ? $customerId=Session::get('customerid')
         :$customerId=Auth::user()->id;
         $order->customerId=$customerId;
         $order->shippingId=Session::get('shippingid');
         $order->orderTotal=Session::get('orderTotal');
+        $order->ordercode=$random;
         $order->orderStatus='pending';
         //return $order->customerId.$order->shippinhId.$order->orderTotal;
         $order->save();
@@ -72,7 +80,7 @@ class PaymentController extends Controller
         $phone='';
         $way='';
         if($paymentType=='cashOnDelivery'){           
-            $message="We will process the order soon";
+            $message=$random." is your order code.We will process the order soon";
             return redirect('/checkout/my-home')->with('message',$message);
 
         }else if($paymentType=='bkash'){
@@ -80,7 +88,7 @@ class PaymentController extends Controller
         }else if($paymentType='rocket'){
             $phone=$Gateway->rocket;
         }
-        $message=$phone." is for ".$paymentType." .within 30min you need to send money for confirm your purchase";
+        $message=$random." is your order code.".$phone." is for ".$paymentType." .within 30min you need to send money for confirm your purchase";
         return redirect('/checkout/my-home')->with('message',$message);
 
     }

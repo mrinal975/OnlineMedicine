@@ -127,13 +127,7 @@
     </div>
 </header>
 
-<div class="toshow" id="pop">
-    <div class="stylecard">
-        <div class="background_card_notify">
-            <h1 class="itemclass" style="color: white;">An item added to card</h1>
-        </div>
-</div>
-</div>
+
 
 <div class="mobile-nav">
     <div class="mobile-nav-wrapper">
@@ -199,4 +193,7 @@
                             @endguest
         </ul>
     </div>
+</div>
+<div id="toast">
+    
 </div>

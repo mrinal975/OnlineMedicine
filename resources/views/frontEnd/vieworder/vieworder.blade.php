@@ -17,6 +17,7 @@
                         <thead>
                         <tr>
                             <th class="text-center">Order Details</th>
+                            <th class="text-center">Order Code</th>
                             <th class="text-center">Ordered Time</th>
                             <th class="text-center">Product Price</th>
                             <th char="text-center">Delivery status</th>
@@ -32,6 +33,7 @@
                                         <i class="fa fa-eye" title="View purchase Detail"></i>
                                     </a>
                                 </td>
+                                <td class="text-center">{{$order->ordercode}}</td>
                                 <td class="text-center">{{
                                 date('Y M j, h:i:a',strtotime($order->created_at))
                                    }}

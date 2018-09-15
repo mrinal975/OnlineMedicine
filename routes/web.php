@@ -131,7 +131,8 @@ Route::group(array('prefix' =>'/adminpanel'),function() {
         Route::get('/order/delete/delever/page/{id}','OrderManage@cancelorder');
         Route::get('/order/delete/delever/{id}','OrderManage@cancelsell');
         Route::get('/order/delivered/view/{id}','OrderManage@viewproductinformation');
-        Route::get('/order/detailview/{id}','OrderManage@detailview');
+        Route::get('/order/detailview/{id}','OrderManage@detailorderview');
+        Route::get('/sell/detailview/{id}','OrderManage@detailsellview');
 
         //Order Status
         Route::get('/dailysell','OrderManage@datewisedata')->name('o');
@@ -177,3 +178,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/autocomplete/fetch','AutocompleteController@fetch')->name('autocomplete.fetch');
 
 Route::get('/NotFound','WellcomeController@pagenotfound')->name('NotFound');
+//
+Route::get('/uniquerandom', 'WellcomeController@uniquerandom')->name('home');

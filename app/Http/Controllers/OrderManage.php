@@ -10,8 +10,7 @@ class OrderManage extends Controller
 
         $newOrder=DB::table('orders')
             ->join('shippings','orders.shippingId','=','shippings.id')
-            ->join('order_details','orders.id','=','order_details.orderId')
-            ->select('shippings.fulname','shippings.phonenumber','orders.orderTotal','orders.id','orders.created_at','orders.buytotal','order_details.productName')
+            ->select('shippings.fulname','shippings.phonenumber','orders.orderTotal','orders.ordercode','orders.id','orders.created_at','orders.buytotal')
             ->where('orderStatus','pending')
             ->orderBy('orders.id', 'DESC')
             ->paginate(6);
@@ -27,8 +26,7 @@ class OrderManage extends Controller
     public function devilered(){
         $delivered=DB::table('orders')
             ->join('shippings','orders.shippingId','=','shippings.id')
-            ->join('order_details','orders.id','=','order_details.orderId')
-            ->select('shippings.fulname','shippings.phonenumber','orders.orderTotal','orders.id','orders.created_at','orders.buytotal','order_details.productName')
+            ->select('shippings.fulname','shippings.phonenumber','orders.orderTotal','orders.ordercode','orders.id','orders.ordercode','orders.created_at','orders.buytotal')
             ->where('orderStatus','delivered')
             ->orderBy('orders.id', 'DESC')
             ->paginate(6);
@@ -57,19 +55,19 @@ class OrderManage extends Controller
         return redirect('adminpanel/new/order')->with('message','Order Canceled Successfully');
     }
 
-    public function detailview($id=null){
+    public function detailorderview($id=null){
         $details=DB::table('orders')
             ->join('order_details','orders.id','=','order_details.orderId')
             ->join('products','order_details.productId','=','products.id')
             ->select('order_details.productId','order_details.productName','order_details.productQuantity','order_details.productPrice','products.productBought')
             ->where('orders.id',$id)
             ->paginate(6);
+        $shippingID=Order::where('id','=',$id)->first();
         $shipping=DB::table('orders')
             ->join('shippings','orders.shippingId','=','shippings.id')
             ->select('shippings.fulname','shippings.email','shippings.address','shippings.phonenumber')
-            ->where('orders.shippingId',$id)
+            ->where('orders.shippingId',$shippingID->shippingId)
             ->first();
-            
         $paymentinfo=DB::table('orders')
             ->join('payments','payments.orderId','=','orders.id')
             ->select('payments.paymentType','payments.paymentStatus','payments.id')
@@ -93,7 +91,42 @@ class OrderManage extends Controller
 
         return view('admin.order.viewOrder',['details'=>$details,'total'=>$total,'shipping'=>$shipping,'paymentinfo'=>$paymentinfo,'data'=>$data]);
     }
+    public function detailsellview($id=null){
+        $details=DB::table('orders')
+            ->join('order_details','orders.id','=','order_details.orderId')
+            ->join('products','order_details.productId','=','products.id')
+            ->select('order_details.productId','order_details.productName','order_details.productQuantity','order_details.productPrice','products.productBought')
+            ->where('orders.id',$id)
+            ->paginate(6);
+        $shippingID=Order::where('id','=',$id)->first();
+        $shipping=DB::table('orders')
+            ->join('shippings','orders.shippingId','=','shippings.id')
+            ->select('shippings.fulname','shippings.email','shippings.address','shippings.phonenumber')
+            ->where('orders.shippingId',$shippingID->shippingId)
+            ->first();
+        $paymentinfo=DB::table('orders')
+            ->join('payments','payments.orderId','=','orders.id')
+            ->select('payments.paymentType','payments.paymentStatus','payments.id')
+            ->where('orders.id',$id)
+            ->first();
+            $data=0;
+            $total=Order::findOrFail($id);
+            if($paymentinfo->paymentStatus=='confirm'){
+                $payment_verifications=DB::table('payments')
+                    ->join('payment_verifications','payments.id','=','payment_verifications.paymentId')
+                    ->select('payment_verifications.secretkey','payment_verifications.Phone')
+                    ->where('payments.id',$paymentinfo->id)
+                    ->first();
+                    $data=0;
+                    $data=1;
+            return view('admin.order.deliveredOrderDetails',['details'=>$details,'total'=>$total,'shipping'=>$shipping,'paymentinfo'=>$paymentinfo,'data'=>$data,'payment_verifications'=>$payment_verifications]);
+            }else{
+                    $data=2;
+            }
+        
 
+        return view('admin.order.deliveredOrderDetails',['details'=>$details,'total'=>$total,'shipping'=>$shipping,'paymentinfo'=>$paymentinfo,'data'=>$data]);
+    }
 
 
 

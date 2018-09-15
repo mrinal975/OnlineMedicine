@@ -97,11 +97,12 @@
                 </div>
                 <div class="col-lg-2"></div>
             </div>
-            <br>
+            <br><br>
             <div class="text-center">
-                <a href="{{url('/adminpanel/new/order')}}" title="Backward" class="btn btn-sm btn-success"><i style="font-size: 25px;" class="fa fa-toggle-left" aria-hidden="false"></i></a>
+                <a href="{{url('/adminpanel/delivered/order')}}" title="Backward" class="btn btn-sm btn-success"><i style="font-size: 25px;" class="fa fa-toggle-left" aria-hidden="false"></i></a>
             </div>
             <br>
+
         </div>
     </section>
 @endsection

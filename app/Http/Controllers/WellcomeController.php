@@ -35,9 +35,8 @@ class WellcomeController extends Controller
         if ($id!=null) {
              $newOrder=DB::table('orders')
             ->join('shippings','orders.shippingId','=','shippings.id')
-            // ->join('order_details','orders.id','=','order_details.orderId')
             ->join('payments','orders.id','=','payments.orderId')
-            ->select('shippings.fulname','shippings.phonenumber','orders.orderTotal','orders.customerStatus','orders.created_at','orders.orderStatus','payments.orderId','payments.paymentType','payments.id','payments.paymentStatus')
+            ->select('shippings.fulname','shippings.phonenumber','orders.orderTotal','orders.customerStatus','orders.ordercode','orders.created_at','orders.orderStatus','payments.orderId','payments.paymentType','payments.id','payments.paymentStatus')
             ->where('orders.customerId',$id)
             ->orderBy('orders.id', 'DESC')
             ->paginate(6);
@@ -122,6 +121,12 @@ class WellcomeController extends Controller
         $subcategory=subcategory::all();
         $info=Info::where('publication_status',1)->first();
         return view('frontEnd.error',['Category'=>$Category,'subcategory'=>$subcategory,'info'=>$info]);
+    }
+    public function uniquerandom(){
+        do{
+         $random=random_int(0,1);
+        }
+        while (Order::where('ordercode', '=',$random)->exists());
     }
 
 }
