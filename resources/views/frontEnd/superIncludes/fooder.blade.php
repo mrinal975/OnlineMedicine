@@ -1,6 +1,17 @@
 <footer id="footer">
     <div class="container">
         <div class="row">
+            <div class="col-sm-8">
+            </div>
+            <div class="col-sm-4">
+                <div class="toshow" id="pop">
+                    <h1> An item added to card</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
             <div class="footer-ribbon">
                 <span>Get in Touch</span>
             </div>
@@ -47,7 +58,6 @@
             </a>
 
             <p class="copyright-text">© Copyright 2018. All Rights Reserved Brothers Limited.</p>
-            
         </div>
     </div>
 </footer>

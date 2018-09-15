@@ -105,7 +105,7 @@
                                         </div>
 
                                         <div class="product-actions">
-                                            <button class="add-to-cart add-to-cart" value="{{$product->id}}">
+                                            <button id="addbtn" class="add-to-cart add-to-cart" value="{{$product->id}}">
                                                 <span class="addToBag">
                                                 <i class="fa fa-shopping-cart"></i>
                                                 Add to Bag</span>

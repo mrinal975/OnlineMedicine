@@ -64,9 +64,19 @@
     <script src="{{asset('superfrontEnd/theme/epharma/css/vendor/modernizr/modernizr.min.js')}}"></script>
 
     <style>
-        .fa{
-            line-height: 30px;
-        }
+    .itemclass{
+        margin:15px;
+    }
+    .stylecard{
+    position: fixed;
+    z-index: 99999;
+    }
+    .toshow {
+    display:none;
+    }
+    .fa{
+        line-height: 30px;
+    }
     .dropbtn {
     background-color: #04cc54;
     color: white;
@@ -310,5 +320,14 @@ ga('send', 'pageview');
         </script>
 
         @yield('js')
+
+<script type="text/javascript">
+    $( "#addbtn" ).click(function() {
+   $( "#pop" ).show(); 
+   setTimeout(function() {
+      $( "#pop" ).hide();
+    }, 900);
+});
+</script>
 </body>
 </html>
