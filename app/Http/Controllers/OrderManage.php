@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Order;
+use Illuminate\Support\Facades\Session;
 class OrderManage extends Controller
 {
     public function viewnewOrder(){
@@ -210,11 +211,54 @@ class OrderManage extends Controller
        
     }
 
-public function datewisedata(){
-    $date = date('Y-m-d');
-    $data=Order::whereDate('created_at', '=',$date)
-                ->where('orderStatus','delivered')->get();
-    return view('admin.order.dailysell',['data'=>$data]);
-    
-}
+    public function datewisedata(){
+        $date = date('Y-m-d');
+        $data=Order::whereDate('created_at', '=',$date)
+                    ->where('orderStatus','delivered')->get();
+        return view('admin.order.dailysell',['data'=>$data]);
+        
+    }
+    public function datefilter($page=null){
+        $pass=0;
+        if (isset($_GET['page'])) {
+            $fromDate=Session::get('fromDate');
+            $toDate=Session::get('toDate');
+            $data = Order::whereRaw("created_at >= ? AND created_at <= ?", 
+                array($fromDate,$toDate)
+            )
+            ->where('orderStatus','delivered')
+            ->orderBy('id','DESC')
+            ->paginate(10);
+            $pass=1;
+            return view('admin.datefilter.datefilter',['data'=>$data,'pass'=>$pass]);
+        }
+        return view('admin.datefilter.datefilter',['pass'=>$pass]);
+        
+    }
+    public function datefilterdata(Request $request){
+        $fromDate = $request->fromdate;
+        $toDate   =$request->todate;
+        $hidden=$request->hidden;
+        if ($fromDate!=null) {
+            $fromDate = date("Y-m-d", strtotime($fromDate));
+            Session::put('fromDate',$fromDate);
+            $toDate = date("Y-m-d", strtotime($toDate));
+            Session::put('toDate',$toDate);
+            if($toDate==null){
+                $toDate=$date = date('Y-m-d');
+            }
+
+            $data = Order::whereRaw("created_at >= ? AND created_at <= ?", 
+                array($fromDate,$toDate)
+            )
+            ->where('orderStatus','delivered')
+            ->orderBy('id','DESC')
+            ->paginate(10);
+            $pass=1;
+            return view('admin.datefilter.datefilter',['data'=>$data,'pass'=>$pass]);
+        }else{
+            return redirect('adminpanel/datefilter')->with('message','input from date');
+        }
+
+    }
 }

@@ -128,5 +128,26 @@ class WellcomeController extends Controller
         }
         while (Order::where('ordercode', '=',$random)->exists());
     }
+    public function datewisedata(){
+        $date = date('Y-m-d');
+        //$reservations = Reservation::whereBetween('reservation_from', array($from, $to))->get();
+        // $data=Order::whereBetween('created_at',array('2018-09-10 ','2018-09-16')->get();
+                    // ->where('orderStatus','delivered')->get();
+        
+     
+        $date = date('Y-m-d');
+        $data=Order::whereDate('created_at', '=',$date)
+                ->where('orderStatus','delivered')->get();
+        
+        $fromDate = "2018-9-11";
+        $toDate   = "2018-9-16";
+
+        $reservations = Order::whereRaw("created_at >= ? AND created_at <= ?", 
+            array($fromDate,$toDate)
+        )
+        ->where('orderStatus','delivered')
+        ->get();
+        dd($reservations);
+    }
 
 }

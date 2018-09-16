@@ -134,6 +134,10 @@ Route::group(array('prefix' =>'/adminpanel'),function() {
         Route::get('/order/detailview/{id}','OrderManage@detailorderview');
         Route::get('/sell/detailview/{id}','OrderManage@detailsellview');
 
+        Route::get('/datefilter','OrderManage@datefilter');
+        Route::POST('/datefilter','OrderManage@datefilterdata')->name('datefilter');
+        
+
         //Order Status
         Route::get('/dailysell','OrderManage@datewisedata')->name('o');
 
@@ -178,5 +182,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/autocomplete/fetch','AutocompleteController@fetch')->name('autocomplete.fetch');
 
 Route::get('/NotFound','WellcomeController@pagenotfound')->name('NotFound');
-//
+
+
+//testing
 Route::get('/uniquerandom', 'WellcomeController@uniquerandom')->name('home');
+Route::get('/datewisedata', 'WellcomeController@datewisedata')->name('datewisedata');
