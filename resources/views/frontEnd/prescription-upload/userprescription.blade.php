@@ -20,10 +20,10 @@
                         <thead>
                         <tr>
                             <th class="text-center">Name</th>
-                            <th class="text-center">Phone Number</th>
+                            <th class="text-center">Phone </th>
                             <th class="text-center">Time</th>
                             <th class="text-center">Email</th>
-                            <th class="text-center">Image</th>
+                            <th class="text-center">Prescription</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -34,7 +34,7 @@
                                 <td class="text-center">{{
                                 date('Y M j, h:i:a',strtotime($pres->created_at))
                                    }}</td>
-                                <td class="text-center">Tk.{{$pres->customerEmail}}</td>
+                                <td class="text-center">{{$pres->customerEmail}}</td>
                                 <td char="text-center">
                                     
                                      <a href='{!! url($pres->prescriptionsImage); !!}' data-lightbox="example-1" class="text-center">

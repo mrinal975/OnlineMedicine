@@ -11,6 +11,7 @@
             <div class="row">
                 <div class="col-lg-2"></div>
                 <div class="col-lg-8">
+                    <div class="overflowprotect">
                    <table class="datatable table table-striped table-bordered">
                         <thead>
                         <tr>
@@ -39,6 +40,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                </div>
                     <h4 class="pull-right"> Total Price : {{ $total->orderTotal}}</h4>
                 </div>
                 <div class="col-lg-2"></div>
@@ -54,6 +56,7 @@
                 <div class="col-lg-4">
                     <h4>Shipping Informartion</h4>
                     <br>
+                    <div class="overflowprotect">
                     <table >
                         <tr>
                             <td>Address :</td>
@@ -69,9 +72,11 @@
                         </tr>
                     </table>
                 </div>
+                </div>
                 <div class="col-lg-4">
                     <h4>Payment Informartion</h4>
                     <br>
+                    <div class="overflowprotect">
                     <table>
                     <tr>
                         <td>Payment Type :</td>
@@ -89,11 +94,12 @@
                         <td>{{$payment_verifications->Phone}}</td>
                     </tr>
                     <tr>
-                        <td>Generated Key</td>
+                        <td>Transection Id :</td>
                         <td>{{$payment_verifications->secretkey}}</td>
                     </tr>
                     @endif
                 </table>
+            </div>
                 </div>
                 <div class="col-lg-2"></div>
             </div>

@@ -81,7 +81,7 @@
 
                                     <div class="form-action clearfix">
                                         <div class="col-xs-12">
-                                            <input type="submit" class="btn btn-primary btn-lg" value="Submit">
+                                            <input type="submit" class="btn btn-info btn-lg" value="Submit">
                                         </div>
                                     </div>
 

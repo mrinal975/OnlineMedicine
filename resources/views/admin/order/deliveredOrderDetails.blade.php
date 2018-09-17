@@ -11,6 +11,7 @@
             <div class="row">
                 <div class="col-lg-2"></div>
                 <div class="col-lg-8">
+                    <div class="overflowprotect">
                    <table class="datatable table table-striped table-bordered">
                         <thead>
                         <tr>
@@ -39,6 +40,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                </div>
                     <h4 class="pull-right"> Total Price : {{ $total->orderTotal}}</h4>
                 </div>
                 <div class="col-lg-2"></div>

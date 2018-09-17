@@ -64,6 +64,14 @@
     <script src="{{asset('superfrontEnd/theme/epharma/css/vendor/modernizr/modernizr.min.js')}}"></script>
 
     <style>
+        
+        @media screen and (max-width: 400px) {
+        .add-to-cart{
+            min-width: 100px;
+            min-height: 30px;
+            background-image: url(/add.jpg);
+            }
+        }
         #toast{
           position:fixed;
           top:10;

@@ -50,7 +50,7 @@ class PrescriptionController extends Controller
         	$this->savePrescriptionsInfoWithQuestion($request,$imageUrl);
         }
 
-        return redirect('/prescription-upload')->with('message','prescription successfully uploaded');
+        return redirect('/prescription-upload')->with('message','Prescription successfully uploaded');
 
     }
 
@@ -58,9 +58,6 @@ class PrescriptionController extends Controller
 		
         Session::get('customerid')!=null ? $customerId=Session::get('customerid')
         :$customerId=Auth::user()->id;
-        // if (Session::get('customerid')!=null) {
-        //     $customerId=Session::get('customerid');
-        // }else
         $prescription=new prescription();
         $prescription->customerId=$customerId;
         $prescription->customerName=$request->customerName;
@@ -70,11 +67,13 @@ class PrescriptionController extends Controller
         $prescription->prescriptionsQuestion='';
         $prescription->save();
     }
+
     protected function savePrescriptionsInfoWithQuestion($request,$imageUrl){
          Session::get('customerid')!=null ? $customerId=Session::get('customerid')
         :$customerId=Auth::user()->id;
 
 		$prescription=new prescription();
+        $prescription->customerId=$customerId;
         $prescription->customerName=$request->customerName;
         $prescription->customerPhone=$request->customerPhone;
         $prescription->customerEmail=$request->customerEmail;
@@ -156,7 +155,7 @@ class PrescriptionController extends Controller
                 $nestedData['customerPhone'] = $r->customerPhone;
                 $nestedData['customerEmail'] = $r->customerEmail;
                 $nestedData['prescriptionsImage'] = '<img src="'.asset($r->prescriptionsImage).'" alt="'.$r->categoryName.'" height="50" width="50" class=" img-rounded">';
-                $nestedData['prescriptionsQuestion'] =$r->prescriptionsQuestion;
+                $nestedData['prescriptionsQuestion'] = substr($r->prescriptionsQuestion,0,15);
                 $nestedData['action'] = '
                     <a href="/adminpanel/prescription/view/'.$r->id.'" class="btn btn-warning btn-xs">View</a>
                     <a href="/adminpanel/prescription/delete/'.$r->id.'" class="btn btn-danger btn-xs" onclick="return confirm(Are you sure to delete);">Delete</a>

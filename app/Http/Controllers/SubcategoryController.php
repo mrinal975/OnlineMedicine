@@ -16,8 +16,8 @@ class SubcategoryController extends Controller
     public function storeSubCategory(Request $request){
         $this->validate($request,[
             'categoryId'=>'required',
-            'subcategoryName'=>'required',
-            'subcategoryDescriptoin'=>'required',
+            'subcategoryName'=>'required|max:180',
+            'subcategoryDescriptoin'=>'required|max:180',
         ]);
 
         $subcategory = new subcategory();
@@ -80,7 +80,7 @@ class SubcategoryController extends Controller
                         $nestedData['categoryId'] = $cat->categoryName;
                 }
                 $nestedData['subcategoryName'] = $r->subcategoryName;
-                $nestedData['subcategoryDescriptoin'] = $r->subcategoryDescriptoin;
+                $nestedData['subcategoryDescriptoin'] = substr($r->subcategoryDescriptoin,0,15);;
                 $nestedData['publication_status'] =$r->publication_status==1 ? 'Publish':'Unpublish';
                 $nestedData['action'] = '
                     <a href="/adminpanel/sub-category/edit/'.$r->id.'" class="btn btn-warning btn-xs">Edit</a>

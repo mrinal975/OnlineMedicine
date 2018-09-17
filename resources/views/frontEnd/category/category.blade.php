@@ -106,10 +106,9 @@
                                         </div>
 
                                         <div class="product-actions">
-                                            <button onclick="showToast('Item added to card')" class="add-to-cart add-to-cart" value="{{$product->id}}">
-                                                <span class="addToBag">
-                                                <i class="fa fa-shopping-cart"></i>
-                                                Add to Bag</span>
+                                            <button onclick="showToast('Item added to card')" class="add-to-cart responsive " value="{{$product->id}}">
+                                                <span class="addToBag " style="color: black !important;">
+                                                <i class="fa fa-shopping-cart"></i>Add to Bag</span>
                                             </button>
                                         </div>
                                     </div>

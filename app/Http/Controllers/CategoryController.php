@@ -17,7 +17,7 @@ class CategoryController extends Controller
 
     public function storeCategory(Request $request){
         $this->validate($request,[
-            'categoryName'=>'required',
+            'categoryName'=>'required|max:180',
             'categoryImage'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
             'publication_status'=>'required',
         ]);

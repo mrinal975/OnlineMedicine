@@ -18,6 +18,7 @@
 
                         <h3 class="text-center text-success">{{Session::get('message')}}</h3>
                         <br>
+                         <div class="overflowprotect">
                         <table class="table vcctable-hover table-bordered class_to_style" id="exampleProduct">
                                 <thead>
                                 <tr>
@@ -40,6 +41,7 @@
                                 </tr>
                             </tfoot>
                         </table>
+                    </div>
                     </div>
                 </div>
 

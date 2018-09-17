@@ -10,6 +10,7 @@
             <br>
             <div class="row">
                 <div class="col-lg-12">
+                    <div class="overflowprotect">
                     <table class="datatable table table-striped table-bordered">
                         <thead>
                         <tr>
@@ -45,6 +46,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                </div>
                 </div>
                  <div class="pull-right">
                     {{$newOrder->render()}}

@@ -236,7 +236,9 @@ class OrderManage extends Controller
         
     }
     public function datefilterdata(Request $request){
+
         $fromDate = $request->fromdate;
+        $order=Order::find(42);
         $toDate   =$request->todate;
         $hidden=$request->hidden;
         if ($fromDate!=null) {
@@ -249,7 +251,7 @@ class OrderManage extends Controller
             }
 
             $data = Order::whereRaw("created_at >= ? AND created_at <= ?", 
-                array($fromDate,$toDate)
+                array($fromDate.' 00:00:00',$toDate.' 23:59:59')
             )
             ->where('orderStatus','delivered')
             ->orderBy('id','DESC')

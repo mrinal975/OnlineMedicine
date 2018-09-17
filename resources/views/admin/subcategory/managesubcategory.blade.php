@@ -14,6 +14,7 @@
             <br>
             <div class="row">
                 <div class="col-lg-12">
+                    <div class="overflowprotect">
                     <table class="table vcctable-hover table-bordered class_to_style" id="example">
                         <thead>
                         <tr>
@@ -34,6 +35,7 @@
                             </tr>
                         </tfoot>
                     </table>
+                </div>
                 </div>
             </div>
         </div>

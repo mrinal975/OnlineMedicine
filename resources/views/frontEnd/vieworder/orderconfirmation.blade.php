@@ -8,7 +8,7 @@ payment
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
                 <br><br>
-                <h2 class="text-center">payment Information</h2>
+                <h2 class="text-center">Payment Information</h2>
 
                 <div class="card-body">
 
@@ -26,7 +26,7 @@ payment
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Generated Code</label>
+                        <label for="exampleInputEmail1">Transection Id</label>
                         <input class="form-control" name="secretkey" id="exampleInputEmail1" type="text" aria-describedby="emailHelp" value="">
                         @if ($errors->has('secretkey'))
                             <span class="help-block">

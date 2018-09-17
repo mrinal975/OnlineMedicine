@@ -14,12 +14,12 @@ class ProductController extends Controller
     }
     public function storeProduct(Request $request){
         $this->validate($request,[
-            'productName'=>'required',
+            'productName'=>'required|max:180',
             'subcategoryId'=>'required',
             'productBought'=>'required',
             'productPrice'=>'required|numeric',
             'productQuantity'=>'required|numeric',
-            'productShortDescriptoin'=>'required',
+            'productShortDescriptoin'=>'required|max:180',
             'type'=>'required',
             'brand'=>'required',
             'publication_status'=>'required',

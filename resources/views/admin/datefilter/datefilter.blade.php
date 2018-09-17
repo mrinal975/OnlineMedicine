@@ -56,9 +56,25 @@
                 @if($pass==1)
                 <div class="container">
                     <div class="row">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
+                            <div class="text-center">
+                            <a class="btn btn-md btn-info" href="{{url('adminpanel/dynamic_pdf')}}">Convert To PDF</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                       
+                        </div>
+                        
+                    </div>
+                    <br>
+                </div>
+                <div class="container">
+                    <div class="row">
                         <div class="col-sm-2"></div>
                         <div class="col-sm-8">
-                               <table class="datatable table table-striped table-bordered class_to_style" id="exampleCategory">
+                        <div class="overflowprotect">    
+                        <table class="datatable table table-striped table-bordered class_to_style" id="exampleCategory">
                         <thead>
                         <tr>
                             <th class="text-center">Index</th>
@@ -91,6 +107,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
                         <div class="pull-left">
                             Total Cost: {{$totalCost}}
                             Total Profit: {{$totalProfit}}

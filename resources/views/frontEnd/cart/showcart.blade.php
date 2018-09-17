@@ -13,7 +13,7 @@
                         <tr>
                             <th class="text-center" style="font-size: 14px;">Remove</th>
                             <th class="text-center" style="font-size: 14px;">Product Name</th>
-                            <th class="text-center" style="font-size: 14px;">Quantity</th>
+                            <th class="text-center" style="font-size: 14px;">Product Quantity</th>
                             <th class="text-center" style="font-size: 14px;">Price</th>
                             <th class="text-center" style="font-size: 14px;">Item Total Price</th>
                         </tr>
@@ -37,7 +37,7 @@
                                             <div class="input-group">
                                                 <input type="number" min="1" name="qty" max="10" class="form-control" value="{{ $cartProduct->qty }}" style="height:47px;" />
                                                 <span class="input-group-btn">
-                                        <button type="submit" name="btn" class="btn btn-info">
+                                        <button type="submit" name="btn" class="btn btn-info responsive">
                                             <span class="fa fa-cloud-upload" ></span>
                                         </button>
                                         </span>

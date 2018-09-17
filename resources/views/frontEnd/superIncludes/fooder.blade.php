@@ -5,7 +5,6 @@
             </div>
             <div class="col-sm-4">
                 <div class="toshow" id="pop">
-                    <h1> An item added to card</h1>
                 </div>
             </div>
         </div>

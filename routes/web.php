@@ -136,7 +136,8 @@ Route::group(array('prefix' =>'/adminpanel'),function() {
 
         Route::get('/datefilter','OrderManage@datefilter');
         Route::POST('/datefilter','OrderManage@datefilterdata')->name('datefilter');
-        
+        //Generate PDF from HTML
+        Route::get('/dynamic_pdf', 'DynamicPDFController@pdf')->name('dynamic_pdf');
 
         //Order Status
         Route::get('/dailysell','OrderManage@datewisedata')->name('o');
@@ -176,6 +177,9 @@ Route::group(array('prefix' =>'/adminpanel'),function() {
 
     });
 });
+
+
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 //Auto Complete

@@ -12,6 +12,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         table>tbody>tr>td{
             color: black;
         }
+        
     </style>
     <!-- //bootstrap-css -->
     <!-- Custom CSS -->

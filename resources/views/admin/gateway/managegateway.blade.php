@@ -16,6 +16,7 @@
                         <h4 class="text-center text-danger">{{Session::get('message')}}</h4>
                         <h4 class="text-center text-success">{{Session::get('msg')}}</h4>
                         <br>
+                        <div class="overflowprotect">
                         <table class="table vcctable-hover table-bordered class_to_style">
                             <tr>
                                 <thead>
@@ -52,6 +53,7 @@
                                 </tbody>
                             </tr>
                         </table>
+                    </div>
                     </div>
                     <div class="pull-right">
                         {{$Information->links()}}    
