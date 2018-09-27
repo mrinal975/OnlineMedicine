@@ -83,8 +83,8 @@ class CategoryController extends Controller
                 $nestedData['categoryImage'] = '<img src="'.asset($r->categoryImage).'" alt="'.$r->categoryName.'" height="50" width="50" class=" img-rounded">';
                 $nestedData['publication_status'] =$r->publication_status==1 ? 'Publish':'Unpublish';
                 $nestedData['action'] = '
-                    <a href="/adminpanel/category/edit/'.$r->id.'" class="btn btn-warning btn-xs">Edit</a>
-                    <a href="/adminpanel/category/delete/'.$r->id.'" class="btn btn-danger btn-xs" onclick="return confirm(Are you sure to delete);">Delete</a>
+                    <a href="/adminpanel/receivable/edit/'.$r->id.'" class="btn btn-warning btn-xs">Edit</a>
+                    <a href="/adminpanel/receivable/delete/'.$r->id.'" class="btn btn-danger btn-xs" onclick="return confirm(Are you sure to delete);">Delete</a>
                 ';
                 $data[] = $nestedData;
             }

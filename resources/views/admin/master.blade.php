@@ -9,6 +9,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- bootstrap-css -->
     <link rel="stylesheet" href="{{asset('admin/css/bootstrap.min.css')}}" >
     <style type="text/css">
+        .overflowprotect{
+            overflow-y:scroll; 
+        }
         table>tbody>tr>td{
             color: black;
         }

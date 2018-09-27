@@ -65,7 +65,7 @@
 
     <style>
         
-        @media screen and (max-width: 400px) {
+        @media screen and (max-width: 481px) {
         .add-to-cart{
             min-width: 100px;
             min-height: 30px;
