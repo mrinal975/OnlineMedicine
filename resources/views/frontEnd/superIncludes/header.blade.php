@@ -4,9 +4,11 @@
             <div class="header-row">
                 <div class="col-md-1 col-sm-6 col-xs-6 logo_border" style="padding-left: 0;">
                     <div class="header-logo">
+                    @if($info)
                         <a href="{{url('/')}}">
                             <img alt="" src="{{asset($info->info_logo)}}" class="logo-image">
                         </a>
+                        @endif
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-6">
@@ -26,7 +28,9 @@
                             <div class="custom-block" style="line-height: 25px;">
                                 <div class="row">
                                     <i class="fa fa-phone" style="line-height: 25px;"></i>
+                                    @if($info)
                                     <span>{{$info->info_Phone}}</span>
+                                    @endif
                                     <span class="split"></span>
                                     <a class="pull-right" style="text-align: right; cursor: default; white-space: nowrap; text-decoration: none;">Immediate drug delivery</a>
 
