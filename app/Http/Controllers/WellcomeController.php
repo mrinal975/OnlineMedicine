@@ -104,9 +104,9 @@ class WellcomeController extends Controller
 
     public function admin(){
         $products=product::all();
-        $user=User::all();
-        $products=count($products);
-        $user=count($products);
+        $user = User::all();
+        $products = is_array($products)?count($products):0;
+        $user = is_array($products)?count($products):0;
         $prescription=prescription::where('prescriptionStatus','0')->get();
         $prescriptionCount=count($prescription);
         $order=Order::where('orderStatus','pending')->get();
